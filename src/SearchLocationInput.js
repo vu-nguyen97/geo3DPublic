@@ -36,9 +36,6 @@ class SearchLocationInput extends PureComponent{
   }
 
   componentDidMount() {
-    // this.loadScript(
-    //   `https://maps.googleapis.com/maps/api/js?key=AIzaSyBgo82RLpZphiLZPf6dma2F82UQWQinzVc&libraries=places`
-    // )
     this.props.onRef(this)
   }
 
