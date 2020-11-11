@@ -17,6 +17,13 @@ const entities = [
     name: 'AC building',
     lat: 21.0324413,
     lng: 105.7830461,
+    polyline: [
+      { lat: 21.032268423406876, lng: 105.78332182269813 },
+      { lat: 21.032673992461593, lng: 105.78328427177192 },
+      { lat: 21.032788971942587, lng: 105.7821631084037 },
+      { lat: 21.032388410229043, lng: 105.78206654887916 },
+      { lat: 21.032268423406876, lng: 105.78332182269813 },
+    ],
     point: {
       color: {
         alpha: 1,
@@ -184,6 +191,7 @@ class App extends PureComponent {
     }
   }
   componentDidMount() {
+    const API_KEY='AIzaSyBgo82RLpZphiLZPf6dma2F82UQWQinzVc'
     this.loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
     )
@@ -251,7 +259,6 @@ class App extends PureComponent {
   }
 
   handleShowMap = () => {
-    console.log('show map')
     this.setState({
       showMap: true
     })
@@ -328,6 +335,7 @@ class App extends PureComponent {
           showMap={this.state.showMap}
           handleCloseMap={this.handleCloseMap}
           entity={this.state.entity}
+          entities={entities}
         >
         </MapModal>
       </div>
