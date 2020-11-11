@@ -26,13 +26,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "yarn install && yarn start"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "heroku-postbuild": "yarn install && yarn build"
   },
   "browserslist": {
     "production": [
