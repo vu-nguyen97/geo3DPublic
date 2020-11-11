@@ -1,0 +1,156 @@
+@import "~bootstrap/scss/bootstrap";
+
+.group-container {
+  position: absolute;
+  top:50px;
+}
+
+.search-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.cesium-infoBox,
+.cesium-viewer-bottom,
+.cesium-viewer-toolbar,
+.cesium-viewer-fullscreenContainer {
+  display: none!important;
+}
+
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+#title {
+  color: #fff;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
+
+ #right-panel {
+  display: none;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#right-panel select,
+#right-panel input {
+  font-size: 15px;
+}
+
+#right-panel select {
+  width: 100%;
+}
+
+#right-panel i {
+  font-size: 12px;
+}
+
+#right-panel {
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  left: 5px;
+  top: 60%;
+  margin-top: -195px;
+  height: 330px;
+  width: 200px;
+  padding: 5px;
+  z-index: 5;
+  border: 1px solid #999;
+  background: #fff;
+}
+
+h2 {
+  font-size: 22px;
+  margin: 0 0 5px 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 271px;
+  width: 200px;
+  overflow-y: scroll;
+}
+
+li {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+li:nth-child(odd) {
+  background-color: #fcfcfc;
+}
+
+#more {
+  width: 100%;
+  margin: 5px 0 0 0;
+}
+
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#floating-panel {
+  background-color: #fff;
+  border: 1px solid #999;
+  left: 25%;
+  padding: 5px;
+  position: absolute;
+  top: 10px;
+  z-index: 5;
+}
+
+.modal-90w {
+  width: 90%;
+  max-width: none!important;
+  height: 90vh;
+}
+
+.modal-content {
+  height: 100%;
+}
