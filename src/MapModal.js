@@ -46,7 +46,7 @@ class MapModal extends PureComponent {
       zoom,
       minZoom: zoom - 14,
       center: entity,
-      // mapTypeId: "satellite",
+      mapTypeId: "satellite",
       heading: 90,
       tilt: 45,
     }
