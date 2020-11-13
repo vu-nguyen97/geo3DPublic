@@ -36,10 +36,10 @@
   }
 
   .item-project {
-    cursor: pointer;
     padding: 10px;
 
     .inner{
+      cursor: pointer;
       background-image: url('../images/thumb5.jpg');
       min-height: 200px;
       width: 100%;

@@ -416,7 +416,14 @@ class App extends PureComponent {
                 {
                   projectsData.map(project =>
                     <div className="item-project" key={project.id}>
-                      <div className="inner">
+                      <div className="inner"
+                        onClick={() => {
+                          this.setState({
+                            entity: project,
+                            showMap: true
+                          })
+                        }}
+                      >
                         <div className="new">new</div>
                         <div className="txt">Home for Sale</div>
                         <div className="price">$105,000</div>
