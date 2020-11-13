@@ -334,13 +334,11 @@ class MapModal extends PureComponent {
       map.mapTypeId = 'roadmap'
     }
 
-    // var hasTypeName = Object.keys(markerObj).find(name => name == type)
-    // if (hasTypeName) {
-    //   this.clearMarkers(type)
-    // }
-    
+    const hasTypeName = Object.keys(markerObj).find(name => name == type)
+    if (!hasTypeName) {
+      markerObj[type] = []
+    }
     const bounds = new window.google.maps.LatLngBounds();
-    let markers = []
 
     for (let i = 0, place; (place = places[i]); i++) {
       const image = {
@@ -356,10 +354,9 @@ class MapModal extends PureComponent {
         title: place.name,
         position: place.geometry.location,
       });
-      markers.push(marker)
+      markerObj[type].push(marker)
       bounds.extend(place.geometry.location);
     }
-    markerObj[`${type}s`] = markers
     map.fitBounds(bounds);
   }
   
