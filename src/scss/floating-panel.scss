@@ -1,25 +1,91 @@
 #floating-panel {
+  display: flex;
+  align-items: center;
+
   position: absolute;
   top: 10px;
-  left: 25%;
+  // left: 20%;
+  // left: 1rem;
   z-index: 5;
-  border: 1px solid #e1e1e1;
   text-align: center;
   font-family: "Roboto", "sans-serif";
-  font-size: 0.875rem;
-  border-radius: 6px;
-  overflow: hidden;
 
-  button {
-    border: 0;
-    padding: 6px 10px;
-    background-color: white;
+  .panel-nav {
+    width: 350px;
+    margin-right: 12px;
 
-    &:hover {
-      background-color: #f1f1f1;
-    }
-    &:nth-child(n + 2) {
-      border-left: 1px solid #e1e1e1;
+    .nav-btns {
+      background-color: white;
+      display: flex;
+      align-items: center;
+      padding: 3px 6rem 3px 5rem;
+  
+      .left-btn{
+        height: 50px;
+        width: 57px;
+        background-color: #ffffff;
+        cursor: pointer;
+        border-radius: 50%;
+        text-align: center;
+        border: 3px solid #4cb2ed;
+        position: relative;
+        padding-top: 9px;
+        box-sizing: border-box;
+      }
+      .left-btn i{
+        font-size: 30px;
+        left: 0;
+        right: 0;
+        color: #e31460;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+      }
+      .left-arrow-btn i{
+        color: #4cb2ed;
+      }
+      .left-arrow-btn i:hover{
+        color: #e31460;
+      }
+      .heart-btn i:hover{
+        color: #2281d4;
+      }
     }
   }
+  
+  .panel-controls {
+    border: 1px solid #e1e1e1;
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.875rem;
+
+    button {
+      border: 0;
+      padding: 6px 10px;
+      background-color: white;
+  
+      &:hover {
+        background-color: #f1f1f1;
+      }
+      &:nth-child(n + 2) {
+        border-left: 1px solid #e1e1e1;
+      }
+    }
+  }
+
+  .panel-search {
+    margin-left: 4rem;
+
+    button {
+      padding: 6px 10px;
+      background-color: white;
+    }
+  }
+}
+
+#search-area-btn {
+  border: 0 solid #e1e1e1 !important;
+  display: none;
 }

@@ -14,6 +14,7 @@ import MapModal from './MapModal'
 
 const entities = [
   {
+    id: 0,
     name: 'AC building',
     lat: 21.0324413,
     lng: 105.7830461,
@@ -35,6 +36,7 @@ const entities = [
     }
   },
   {
+    id: 1,
     name: 'Ho Hoan Kiem',
     lat: 21.0287797,
     lng: 105.850176,
@@ -49,6 +51,7 @@ const entities = [
     }
   },
   {
+    id: 2,
     name: 'Cau Rong',
     lat: 16.0610497,
     lng: 108.2252116,
@@ -63,6 +66,7 @@ const entities = [
     }
   },
   {
+    id: 3,
     name: 'Cau Vang',
     lat: 15.9949857,
     lng: 107.9943842,
@@ -77,6 +81,7 @@ const entities = [
     }
   },
   {
+    id: 4,
     name: 'Nha tho Da',
     lat: 12.2468,
     lng: 109.1858796,
@@ -91,6 +96,7 @@ const entities = [
     }
   },
   {
+    id: 5,
     name: 'Thap Ba',
     lat: 12.2653933,
     lng: 109.1932058,
@@ -105,6 +111,7 @@ const entities = [
     }
   },
   {
+    id: 6,
     name: 'Bitexco',
     lat: 10.7719937,
     lng: 106.7057951,
@@ -235,7 +242,6 @@ class App extends PureComponent {
           destination: this.parsePostition(location.coords.latitude, location.coords.longitude, 20000000)
         })
       });
-      console.log('go here')
     } else {
       console.log('errr')
     }
