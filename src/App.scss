@@ -30,6 +30,20 @@
   height: 100%;
 }
 
+$infor-nav-width: 385px;
+$control-width: 40px;
+.move-below-control-btns {
+  right: calc(#{$control-width} + #{$infor-nav-width}) !important;
+  bottom: 402px !important;
+}
+.move-switch-map-btns {
+  right: calc(#{ $infor-nav-width } + 52px);
+  left: auto !important;
+}
+.move-full-screen-btn {
+  right: $infor-nav-width !important;
+}
+
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
@@ -194,9 +208,10 @@ button.accordion svg{
 .slider-thumbnails{
     background-color: #000000;
     position: absolute;
-    left: 1rem;
-    right: 1rem;
-    bottom: 1rem;
+    padding-top: 1.2rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
     box-sizing: border-box;
     z-index: 99;
     -webkit-transition: all 1.5s ease;

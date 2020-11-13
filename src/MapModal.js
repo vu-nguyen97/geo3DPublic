@@ -68,21 +68,23 @@ class MapModal extends PureComponent {
     this.listeningMovedMouse(map, entities)
     this.onClickMarker(map)
     this.getLocationOfUser()
-    this.onShowSwitchMapType()
+    this.onShowControllerOfMap()
     this.showLayerImage()
   }
 
-  onShowSwitchMapType = () => {
-    // fix me
-    let swithMapType = document.getElementsByClassName('gmnoprint')[0]
-    if (!swithMapType) {
+  onShowControllerOfMap = () => {
+    let swithMapTypeBtn = document.getElementsByClassName('gmnoprint')[0]
+    let controlButtons = document.getElementsByClassName('gm-bundled-control-on-bottom')[0]
+    let fullScreenBtn = document.getElementsByClassName('gm-fullscreen-control')[0]
+
+    if (!swithMapTypeBtn || !controlButtons) {
       setTimeout(() => {
-        this.onShowSwitchMapType()
+        this.onShowControllerOfMap()
       }, 500);
     } else {
-      console.log('clear Switch Map Type')
-      swithMapType.style.left = 'auto'
-      swithMapType.style.right = '52px'
+      controlButtons.classList.add('move-below-control-btns')
+      swithMapTypeBtn.classList.add('move-switch-map-btns')
+      fullScreenBtn.classList.add('move-full-screen-btn')
     }
   }
 
