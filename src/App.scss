@@ -8,17 +8,53 @@
 @import "./scss/search-2d.scss";
 @import "./scss/cur-location-btn.scss";
 @import "./scss/pac-card.scss";
+@import "./scss/project-panel.scss";
+
+// override css of mdbreact
+.btn {
+  text-transform: unset !important;
+}
 
 .group-container {
   position: absolute;
-  top:50px;
+  top: 8rem;
+  left: 5px;
+  // height: calc(100vh - 16rem);
+
+  .list-group {
+    width: 250px;
+  }
+}
+.control-btns {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+
+  .search-input {
+    margin-right: 2rem;
+    width: 260px;
+  }
+  .find-location {
+    display: flex;
+    align-items: center;
+    color: #42a5f5 ;
+
+    .text {
+      color: white;
+    }
+  }
+  .fa-2x {
+    font-size: 1.6em;
+  }
 }
 
-.search-input {
-  position: absolute;
-  top: 0;
-  right: 0;
+.search-location-input {
+  display: flex;
+  align-items: center;
 }
+
 .cesium-infoBox,
 .cesium-viewer-bottom,
 .cesium-viewer-toolbar,

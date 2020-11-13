@@ -42,11 +42,11 @@ class SearchLocationInput extends PureComponent{
   render() {
     return (
       <div className="search-location-input">
-        <input
+        <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"
           ref={this.autoCompleteRef}
           onChange={event => this.setQuery(event.target.value)}
           placeholder="Enter a location"
-          value={this.state.query}
+          value={this.state.query}          
         />
       </div>
     );

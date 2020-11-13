@@ -1,0 +1,102 @@
+.list-projects {
+  position: absolute;
+  top: 100px;
+  left: 5px;
+  width: 320px;
+  background-color: #ffffff;
+  -webkit-transition: all 1.5s ease;
+  -moz-transition: all 1.5s ease;
+  -o-transition: all 1.5s ease;
+  -ms-transition: all 1.5s ease;
+  transition: all 1.5s ease;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
+  $radius: 10px;
+  .head{
+    padding: 10px;
+    border-radius: $radius $radius 0 0;
+    font-size: 26px;
+    padding-bottom: 10px;
+    .back{
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 20px;
+      i{
+        font-size: 42px;
+        color: #4cb2ed;
+       transition: all 0.5s ease;
+     }
+    }
+  }
+
+  .wrapper {
+    height: 700px;
+    overflow: auto;
+    border-radius: 0 0 $radius $radius;
+  }
+
+  .item-project {
+    cursor: pointer;
+    padding: 10px;
+
+    .inner{
+      background-image: url('../images/thumb5.jpg');
+      min-height: 200px;
+      width: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: relative;
+      border-radius:5px;
+      .new{
+        position: absolute;
+        text-transform: uppercase;
+        color: #ffffff;
+        background-color: #037bfc;
+        padding: 4px 3px;
+        font-weight: bold;
+        left: 20px;
+        top: 15px;
+      }
+      .txt{
+        position: absolute;
+        font-size: 11px;
+        color: #fff;
+        left: 15px;
+        bottom: 42px;
+      }
+      .price{
+        position: absolute;     
+        left: 15px;
+        bottom: 12px;
+        font-size: 20px;
+        line-height: 1;
+        color: #fff;
+        text-shadow: 0 1px #444;
+        display: inline-block;
+        font-weight: 700;
+      }
+      .favo-icon{
+        position: absolute;
+        right: 10px;
+        bottom: 2px;
+        font-size: 38px;
+      }
+      .favo-icon:hover{
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .desc {
+    font-size: 0.9rem;
+    padding: 5px;
+
+    div:first-child > span{
+      margin-right: 30px;
+      strong{
+        padding-right: 5px;
+      }
+    }
+  }
+}
