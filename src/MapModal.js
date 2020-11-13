@@ -26,7 +26,8 @@ class MapModal extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      isShowSearchAreaBtn: false
+      isShowSearchAreaBtn: false,
+      isFullScreen: false
     }
     window.seft = this
   }
@@ -65,26 +66,52 @@ class MapModal extends PureComponent {
     })
 
     transitLayer = new window.google.maps.TransitLayer();
+    this.onBoundsChanged()
     this.listeningMovedMouse(map, entities)
     this.onClickMarker(map)
     this.getLocationOfUser()
-    this.onShowControllerOfMap()
     this.showLayerImage()
   }
 
-  onShowControllerOfMap = () => {
+  onBoundsChanged = () => {
+    this.onShowControllerOfMap(true)
+    
+    map.addListener('bounds_changed', function() {
+      if (
+          $(map.getDiv()).children().eq(0).height() == window.innerHeight &&
+          $(map.getDiv()).children().eq(0).width()  == window.innerWidth 
+        ) {
+          this.setState({ isFullScreen : true })
+          this.onShowControllerOfMap(false)
+      } else {
+        if (this.state.isFullScreen) {
+          this.setState({ isFullScreen : false })
+          this.onShowControllerOfMap(true)
+        }
+      }
+    }.bind(this))
+  }
+
+  onShowControllerOfMap = (show = true) => {
     let swithMapTypeBtn = document.getElementsByClassName('gmnoprint')[0]
     let controlButtons = document.getElementsByClassName('gm-bundled-control-on-bottom')[0]
     let fullScreenBtn = document.getElementsByClassName('gm-fullscreen-control')[0]
 
-    if (!swithMapTypeBtn || !controlButtons) {
+    if (!swithMapTypeBtn || !controlButtons || !fullScreenBtn) {
       setTimeout(() => {
         this.onShowControllerOfMap()
       }, 500);
     } else {
-      controlButtons.classList.add('move-below-control-btns')
-      swithMapTypeBtn.classList.add('move-switch-map-btns')
-      fullScreenBtn.classList.add('move-full-screen-btn')
+      if (show) {
+        controlButtons.classList.add('move-below-control-btns')
+        swithMapTypeBtn.classList.add('move-switch-map-btns')
+        fullScreenBtn.classList.add('move-full-screen-btn')
+      } else {
+        console.log('remove class')
+        controlButtons.classList.remove('move-below-control-btns')
+        swithMapTypeBtn.classList.remove('move-switch-map-btns')
+        fullScreenBtn.classList.remove('move-full-screen-btn')
+      }
     }
   }
 
