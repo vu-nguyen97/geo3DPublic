@@ -400,7 +400,7 @@ class MapModal extends PureComponent {
   render() {
     const { handleCloseMap } = this.props
     return (
-      <Modal show={this.props.showMap} onHide={handleCloseMap} dialogClassName="modal-90w">
+      <Modal show={this.props.showMap} onHide={handleCloseMap} dialogClassName="modal-90w 2d-modal">
         <Modal.Body className="map-modal">
           <div id="floating-panel">
             <div className="panel-nav">
@@ -634,6 +634,26 @@ class MapModal extends PureComponent {
                     <i className="fas fa-search"></i>
                   </div>
                 </div>
+
+                <div className="item" >
+                  <div className="inner-item inner-item4 inner-item5 ">
+                    <i className="fas fa-search"></i>
+                  </div>
+                </div>
+
+                <div className="item" >
+                  <div className="inner-item inner-item4 inner-item6 ">
+                    <i className="fas fa-search"></i>
+                  </div>
+                </div>
+
+                  <div className="item" >
+                  <div className="inner-item inner-item4 inner-item7 ">
+                    <i className="fas fa-search"></i>
+                  </div>
+                </div>
+
+
                 <div className="clearfix"></div>
             </div>
           </div>

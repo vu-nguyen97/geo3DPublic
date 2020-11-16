@@ -3,7 +3,7 @@
   align-items: center;
 
   position: absolute;
-  top: 10px;
+  top: 0;
   // left: 20%;
   // left: 1rem;
   z-index: 5;
@@ -12,7 +12,7 @@
 
   .panel-nav {
     width: 350px;
-    margin-right: 12px;
+    margin-right: 3px;
 
     .nav-btns {
       background-color: white;
@@ -22,7 +22,7 @@
   
       .left-btn{
         height: 50px;
-        width: 57px;
+        width: 50px;
         background-color: #ffffff;
         cursor: pointer;
         border-radius: 50%;

@@ -450,7 +450,9 @@ class App extends PureComponent {
 
     return (
       <div>
-        <Viewer ref={e => { this.viewer = e && e.cesiumElement; }} full>
+        <Viewer ref={e => { this.viewer = e && e.cesiumElement; }} full
+className = "2d-modal-wrap"
+        >
           <div className="control-btns">
             <div className="search-input">
               <SearchInput onRef={ref => { this.searchInput = ref }} callback={this.flyTo} />

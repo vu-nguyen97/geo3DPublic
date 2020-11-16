@@ -67,6 +67,9 @@
       color: white;
       padding: 0 1.2rem;
     }
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px!important;
+    padding:0;
   }
 
 
@@ -77,12 +80,15 @@
     align-items: center;
     color: #42a5f5 ;
     .text {
-      font-size: 0.8rem;
+      font-size:15px;
       color: white;
+      border-radius:5px;
     }
     .fa-2x {
       font-size: 1.1rem !important;
     }
+    padding:11px!important;
+    border-radius: 5px;
   }
 
   @media (min-width: 1400px) {
@@ -93,6 +99,9 @@
       input {
         display: flex;
         align-items: center;
+        padding-top: 0;
+        border-top-left-radius: 5px !important;
+        border-bottom-left-radius: 5px !important;
       }
       input::placeholder {
         font-size: 1rem;
@@ -101,6 +110,9 @@
     }
     .search-btn > .text {
       font-size: 1rem !important;
+      display: inline-block;
+      box-sizing: border-box;
+      padding: 10px;
     }
   }
 }
@@ -240,11 +252,11 @@ body {
   // padding-top: 5%;
   position: absolute;
   // top:0;
-  top: 77px;
+  top: 60px;
   left: 0;
   // left: -400px;
-  // height: 100%;
-  width: 350px;
+  height: 100%;
+  width: 290px;
   background-color: #ffffff;
   -webkit-transition: all 1.5s ease;
   -moz-transition: all 1.5s ease;
@@ -301,7 +313,7 @@ button.accordion svg{
 .slider-thumbnails{
     background-color: #000000;
     position: absolute;
-    padding-top: 1.2rem;
+    padding: 1rem 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -312,22 +324,23 @@ button.accordion svg{
     -o-transition: all 1.5s ease;
     -ms-transition: all 1.5s ease;
     transition: all 1.5s ease;
+
 }
 .slider-thumbnails .inner-box{
-  margin: 0 -15px;
+  margin: 0 -7.5px;
 }
 .slider-thumbnails .item{
   float: left;
   box-sizing: border-box;
-  width: 25%;
-  padding:0 15px;
-    overflow: hidden;
+  width: 14.2%;
+  padding:0 7.5px;
+  overflow: hidden;
 }
 .slider-thumbnails .inner-item{
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 230px;
+  min-height: 150px;
   position: relative;
      -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -374,6 +387,15 @@ button.accordion svg{
 .inner-item4 {
   background-image: url('./images/thumb3.jpg');
 }
+.inner-item5 {
+  background-image: url('./images/thumb6.jpg');
+}
+.inner-item6 {
+  background-image: url('./images/thumb6.jpg');
+}
+.inner-item6 {
+  background-image: url('./images/thumb7.jpg');
+}
 
 
 
@@ -383,14 +405,14 @@ button.accordion svg{
   position: absolute;
   right: 0;
   top: 0;
-  min-width: 370px;
+  width: 280px;
   height: 100%;
-  padding-right: 5px;
   -webkit-transition: all 1.5s ease;
   -moz-transition: all 1.5s ease;
   -o-transition: all 1.5s ease;
   -ms-transition: all 1.5s ease;
   transition: all 1.5s ease;
+  background-color:#ffffff;
 }
 
 .detail-location{
@@ -454,6 +476,11 @@ button.accordion svg{
   font-weight: 400;
   color: #757575;
   margin-left: 5px;
+}
+.detail-location,
+.price-infor,
+.common-price{
+  border-bottom: 3px solid rgba(1,1,1,0.8);
 }
 // 
 .icon-car {
@@ -519,8 +546,7 @@ button.accordion svg{
   border-radius: 30px;
   vertical-align: text-top;
   text-decoration: none;
-
-  font-size: 16px;
+  font-size: 14px;
 }
 .qa .question{
   color: #fff;
@@ -530,7 +556,7 @@ button.accordion svg{
 .qa .answer{
   margin-left: 10px;
   border: 1px solid #0000ff;
-  padding: 3px 10px;
+  padding: 3px;
   border-radius: 5px;
 }
 .qa a svg{
@@ -567,6 +593,7 @@ button.accordion svg{
   z-index: 99999999999999999999;
   display: none;
 }
+
 /*end quynq custom*/
 
 @media(max-width: 1600px) {
@@ -579,3 +606,24 @@ button.accordion svg{
     overflow: auto;
   }
 }
+.modal-90w{
+    width:100%;
+    height:100%;
+    margin:0;
+  }
+.move-full-screen-btn{
+  right: 280px !important;
+}
+.move-switch-map-btns{
+  right: 354px !important;
+}
+#cur-location-btn{
+  right: -125px !important
+}
+.gmnoprint{
+  right: 320px !important;
+}
+.fade.modal.show{
+  padding-left:0!important;
+}
+/*end quynq custom*/
