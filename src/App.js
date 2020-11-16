@@ -217,6 +217,22 @@ const entities = [
       pixelSize: 20
     }
   },
+  {
+    id: 12,
+    city_id: 4,
+    name: 'Texas building 2',
+    lat: 31.95911405710053,
+    lng: -99.89677097869526,
+    point: {
+      color: {
+        alpha: 1,
+        blue: 0,
+        green: 0.6470588235294118,
+        red: 1
+      },
+      pixelSize: 20
+    }
+  },
 ]
 
 const countries = [
@@ -257,8 +273,8 @@ const countries = [
       {
         id: 4,
         name: 'Texas',
-        lat: 31.438885281142202,
-        lng: -100.442044098786,
+        lat: 31.961885281142202,
+        lng: -99.8951742379726,
       },
       {
         id: 5,
@@ -458,7 +474,8 @@ class App extends PureComponent {
             <MDBBtn color="amber lighten-1" className="search-btn">
               <span className="text">Search</span>
             </MDBBtn>
-{/* 
+            
+            {/* 
             <InputGroup className="mb-2">
               <FormControl id="inlineFormInputGroup" placeholder="Username" />
               <InputGroup.Prepend className="search-btn">

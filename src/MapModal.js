@@ -107,7 +107,6 @@ class MapModal extends PureComponent {
         swithMapTypeBtn.classList.add('move-switch-map-btns')
         fullScreenBtn.classList.add('move-full-screen-btn')
       } else {
-        console.log('remove class')
         controlButtons.classList.remove('move-below-control-btns')
         swithMapTypeBtn.classList.remove('move-switch-map-btns')
         fullScreenBtn.classList.remove('move-full-screen-btn')
@@ -634,6 +633,25 @@ class MapModal extends PureComponent {
                     <i className="fas fa-search"></i>
                   </div>
                 </div>
+
+                <div className="item">
+                  <div className="inner-item inner-item4 inner-item5 ">
+                    <i className="fas fa-search"></i>
+                  </div>
+                </div>
+
+                <div className="item">
+                  <div className="inner-item inner-item4 inner-item6 ">
+                    <i className="fas fa-search"></i>
+                  </div>
+                </div>
+
+                <div className="item">
+                  <div className="inner-item inner-item4 inner-item7 ">
+                    <i className="fas fa-search"></i>
+                  </div>
+                </div>
+
                 <div className="clearfix"></div>
             </div>
           </div>
