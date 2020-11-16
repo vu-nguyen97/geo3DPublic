@@ -6,14 +6,16 @@ import { hot } from "react-hot-loader/root";
 import {
   ListGroup,
   Card,
-  Button
+  Button,
+  InputGroup,
+  FormControl
 } from "react-bootstrap"
 import { MDBBtn, MDBIcon } from 'mdbreact'
 
 import CustomModal from './Modal'
 import SearchInput from './SearchLocationInput'
 import MapModal from './MapModal'
-import location from './images/location.svg'
+// import location from './images/location.svg'
 
 const entities = [
   {
@@ -151,44 +153,12 @@ const entities = [
       pixelSize: 20
     }
   },
-]
-
-const cities = [
   {
-    id: 0,
-    name: 'Hanoi',
-    lat: 21.0245,
-    lng: 105.84117,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
-  },
-  {
-    id: 1,
-    name: 'Da Nang',
-    lat: 16.06778,
-    lng: 108.22083,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 0,
-        red: 1
-      },
-      pixelSize: 20
-    }
-  },
-  {
-    id: 2,
-    name: 'Nha Trang',
-    lat: 12.24507,
-    lng: 109.19432,
+    id: 8,
+    city_id: 4,
+    name: 'Texas building',
+    lat: 31.885846490482866,
+    lng: -99.90773359728587,
     point: {
       color: {
         alpha: 1,
@@ -200,10 +170,43 @@ const cities = [
     }
   },
   {
-    id: 3,
-    name: 'Ho Chi Minh',
-    lat: 10.82302,
-    lng: 106.62965,
+    id: 9,
+    city_id: 5,
+    name: 'California building',
+    lat: 36.45054207940431,
+    lng: -120.15164770794084,
+    point: {
+      color: {
+        alpha: 1,
+        blue: 1,
+        green: 1,
+        red: 1
+      },
+      pixelSize: 20
+    }
+  },
+  {
+    id: 10,
+    city_id: 6,
+    name: 'Chicago building',
+    lat: 41.84879726701267,
+    lng: -87.68257361576919,
+    point: {
+      color: {
+        alpha: 1,
+        blue: 0,
+        green: 1,
+        red: 1
+      },
+      pixelSize: 20
+    }
+  },
+  {
+    id: 11,
+    city_id: 7,
+    name: 'Los Angeles building',
+    lat: 33.98228676730012,
+    lng: -118.24967853318772,
     point: {
       color: {
         alpha: 1,
@@ -214,6 +217,69 @@ const cities = [
       pixelSize: 20
     }
   },
+]
+
+const countries = [
+  {
+    id: 0,
+    name: 'Viet nam',
+    cities: [
+      {
+        id: 0,
+        name: 'Hanoi',
+        lat: 21.0245,
+        lng: 105.84117,
+      },
+      {
+        id: 1,
+        name: 'Da Nang',
+        lat: 16.06778,
+        lng: 108.22083,
+      },
+      {
+        id: 2,
+        name: 'Nha Trang',
+        lat: 12.24507,
+        lng: 109.19432,
+      },
+      {
+        id: 3,
+        name: 'Ho Chi Minh',
+        lat: 10.82302,
+        lng: 106.62965,
+      },
+    ]
+  },
+  {
+    id: 1,
+    name: 'United State',
+    cities: [
+      {
+        id: 4,
+        name: 'Texas',
+        lat: 31.438885281142202,
+        lng: -100.442044098786,
+      },
+      {
+        id: 5,
+        name: 'California',
+        lat: 41.85214488646792,
+        lng: -87.95161731336496 ,
+      },
+      {
+        id: 6,
+        name: 'Chicago',
+        lat: 41.87620677947113,
+        lng: -87.62965377343647,
+      },
+      {
+        id: 7,
+        name: 'Los Angeles',
+        lat: 34.044400781058066,
+        lng: -118.24144442703695,
+      },
+    ]
+  }
 ]
 
 const levels = [
@@ -247,7 +313,12 @@ class App extends PureComponent {
       entity: null,
       displayLevel: 'city',
       activedCity: null,
-      userLocation: null
+      userLocation: null,
+      showCities: {
+        // fix me
+        0: true,
+        1: true
+      }
     }
   }
   componentDidMount() {
@@ -259,6 +330,7 @@ class App extends PureComponent {
     this.viewer.animation.container.style.visibility = 'hidden';
     this.viewer.timeline.container.style.visibility = 'hidden';
     this.viewer.scene.screenSpaceCameraController.minimumZoomDistance = 70000;
+    this.viewer.scene.screenSpaceCameraController.maximumZoomDistance = 40000000;
     this.viewer.scene.screenSpaceCameraController._minimumZoomRate = 300;
   }
 
@@ -269,7 +341,7 @@ class App extends PureComponent {
     if (script.readyState) {
       script.onreadystatechange = function () {
         if (script.readyState === "loaded" || script.readyState === "complete") {
-          console.log('script loaded')
+          // console.log('script loaded')
           script.onreadystatechange = null;
           this.searchInput.handleScriptLoad()
           // this.mapModal.initMap()
@@ -316,6 +388,15 @@ class App extends PureComponent {
    })
   }
 
+  handleShowCities = (country_id) => {
+    this.setState({
+      showCities: {
+        ...this.state.showCities,
+        [country_id]: !this.state.showCities[country_id]
+      }}
+    )
+  }
+
   handleClose = () => {
     this.setState({
       show: false
@@ -359,13 +440,13 @@ class App extends PureComponent {
   }
 
   render() {
-    const { displayLevel, activedCity, userLocation } = this.state
+    const { displayLevel, activedCity, userLocation, showCities } = this.state
     let projectsData = []
     if (activedCity) {
       const activedCityId = activedCity.id;
       projectsData = entities.filter(entity => entity.city_id == activedCityId)
     }
-    const billboard = {image: location}
+    // const billboard = {image: location}
 
     return (
       <div>
@@ -377,6 +458,15 @@ class App extends PureComponent {
             <MDBBtn color="amber lighten-1" className="search-btn">
               <span className="text">Search</span>
             </MDBBtn>
+{/* 
+            <InputGroup className="mb-2">
+              <FormControl id="inlineFormInputGroup" placeholder="Username" />
+              <InputGroup.Prepend className="search-btn">
+                <Button className="search-btn">
+                  <span className="text">Search</span>
+                </Button>
+              </InputGroup.Prepend>
+            </InputGroup> */}
 
             <MDBBtn rounded color="indigo darken-1" className="find-location" size="sm"
               onClick={() => {
@@ -392,13 +482,34 @@ class App extends PureComponent {
           {
             displayLevel == 'city' &&
             <div className="d-flex group-container">
-              <ListGroup>
-                {cities.map((city, index) =>
-                  <ListGroup.Item action onClick={() => this.onClickPosition(city)} key={index}>
-                    {city.name}
-                  </ListGroup.Item>
-                )}
-              </ListGroup>
+              {
+                countries.map(country => {
+                  const { cities } = country
+                  const isShowCities = showCities[country.id]
+                  return (
+                    <ListGroup key={country.id}>
+                      <ListGroup.Item className="country-name"
+                        onClick={() => this.handleShowCities(country.id)}
+                      >
+                        <span>{country.name}</span>
+                        <span>
+                          {
+                            isShowCities ? <i className="fas fa-sort-up"/> : <i className="fas fa-sort-down"/>
+                          }
+                        </span>
+                      </ListGroup.Item>
+                      {
+                        isShowCities &&
+                        cities.map((city, index) =>
+                          <ListGroup.Item action onClick={() => this.onClickPosition(city)} key={index}>
+                            {city.name}
+                          </ListGroup.Item>
+                        )
+                      }
+                    </ListGroup>
+                  )
+                })
+              }
             </div>
           }
           {

@@ -16,6 +16,7 @@
 }
 
 .group-container {
+  flex-direction: column;
   position: absolute;
   top: 7rem;
   left: 1rem;
@@ -27,7 +28,19 @@
 
     .list-group-item {
       border-radius: 0 !important;
+
+      & + .list-group-item {
+        padding-left: 1.9rem !important;
+      }
     }
+  }
+
+  .country-name {
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
   }
 }
 .control-btns {
@@ -46,27 +59,29 @@
     }
   }
   .search-btn {
-    margin-left: -1rem;
+    margin-left: -9px;
     border-radius: 0 !important;
     // border-top-right-radius: 0.25rem !important;
     // border-bottom-right-radius: 0.25rem !important;
+    .text {
+      color: white;
+      padding: 0 1.2rem;
+    }
   }
 
-  .text {
-    color: white;
-  }
 
   .find-location {
     margin-left: 1rem;
-    padding: .26rem 1.1em !important;
+    padding: .28rem 1.1em !important;
     display: flex;
     align-items: center;
     color: #42a5f5 ;
     .text {
       font-size: 0.8rem;
+      color: white;
     }
     .fa-2x {
-      font-size: 1.5rem;
+      font-size: 1.1rem !important;
     }
   }
 
