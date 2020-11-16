@@ -45,7 +45,7 @@ class SearchLocationInput extends PureComponent{
         <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"
           ref={this.autoCompleteRef}
           onChange={event => this.setQuery(event.target.value)}
-          placeholder="Enter a location"
+          placeholder="Find for you next home by city, country or zip"
           value={this.state.query}          
         />
       </div>

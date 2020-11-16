@@ -17,12 +17,17 @@
 
 .group-container {
   position: absolute;
-  top: 8rem;
-  left: 5px;
+  top: 7rem;
+  left: 1rem;
   // height: calc(100vh - 16rem);
 
   .list-group {
     width: 250px;
+    border-radius: 0 !important;
+
+    .list-group-item {
+      border-radius: 0 !important;
+    }
   }
 }
 .control-btns {
@@ -31,22 +36,57 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
+  right: 0;
 
+  
   .search-input {
-    margin-right: 2rem;
-    width: 260px;
+    width: 20%;
+    input {
+      border-radius: 0 !important;
+    }
   }
+  .search-btn {
+    margin-left: -1rem;
+    border-radius: 0 !important;
+    // border-top-right-radius: 0.25rem !important;
+    // border-bottom-right-radius: 0.25rem !important;
+  }
+
+  .text {
+    color: white;
+  }
+
   .find-location {
+    margin-left: 1rem;
+    padding: .26rem 1.1em !important;
     display: flex;
     align-items: center;
     color: #42a5f5 ;
-
     .text {
-      color: white;
+      font-size: 0.8rem;
+    }
+    .fa-2x {
+      font-size: 1.5rem;
     }
   }
-  .fa-2x {
-    font-size: 1.6em;
+
+  @media (min-width: 1400px) {
+    .search-btn, input {
+      font-size: 1.3rem !important;
+    }
+    .search-input {
+      input {
+        display: flex;
+        align-items: center;
+      }
+      input::placeholder {
+        font-size: 1rem;
+        vertical-align: middle;
+      }
+    }
+    .search-btn > .text {
+      font-size: 1rem !important;
+    }
   }
 }
 

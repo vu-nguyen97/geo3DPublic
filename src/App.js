@@ -13,6 +13,7 @@ import { MDBBtn, MDBIcon } from 'mdbreact'
 import CustomModal from './Modal'
 import SearchInput from './SearchLocationInput'
 import MapModal from './MapModal'
+import location from './images/location.svg'
 
 const entities = [
   {
@@ -364,6 +365,7 @@ class App extends PureComponent {
       const activedCityId = activedCity.id;
       projectsData = entities.filter(entity => entity.city_id == activedCityId)
     }
+    const billboard = {image: location}
 
     return (
       <div>
@@ -372,16 +374,19 @@ class App extends PureComponent {
             <div className="search-input">
               <SearchInput onRef={ref => { this.searchInput = ref }} callback={this.flyTo} />
             </div>
+            <MDBBtn color="amber lighten-1" className="search-btn">
+              <span className="text">Search</span>
+            </MDBBtn>
 
-            <MDBBtn rounded color="indigo darken-1" className="find-location"
+            <MDBBtn rounded color="indigo darken-1" className="find-location" size="sm"
               onClick={() => {
                 this.viewer.camera.flyTo({
-                  destination: this.parsePostition(userLocation.coords.latitude, userLocation.coords.longitude, 70000)
+                  destination: this.parsePostition(userLocation.coords.latitude, userLocation.coords.longitude, 75000)
                 })
               }}
             >
               <MDBIcon fas icon="map-marker-alt" size="2x" className="mr-2" />
-              <span className="text">Find my location</span>
+              <span className="text">Set Your Location</span>
             </MDBBtn>
           </div>
           {
@@ -452,6 +457,7 @@ class App extends PureComponent {
             <Entity
               position={this.parsePostition(entity.lat, entity.lng)}
               point={entity.point}
+              // billboard={billboard}
               name={entity.name}
               key={index}
               onClick={() => this.onClickEntity(entity)}
