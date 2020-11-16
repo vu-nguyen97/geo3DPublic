@@ -240,6 +240,8 @@ button.accordion svg{
    -ms-transform: rotate(180deg); /* IE 9 */
   transform: rotate(180deg);
 }
+
+
 /*begin slider thumb*/
 .slider-thumbnails{
     background-color: #000000;
@@ -511,3 +513,14 @@ button.accordion svg{
   display: none;
 }
 /*end quynq custom*/
+
+@media(max-width: 1600px) {
+  .accordion-menu {
+    max-height: 400px;
+    overflow: auto;
+  }
+  .infor-nav {
+    max-height: 480px;
+    overflow: auto;
+  }
+}
