@@ -398,18 +398,19 @@ class MapModal extends PureComponent {
   }
 
   render() {
+    const { handleCloseMap } = this.props
     return (
-      <Modal show={this.props.showMap} onHide={this.props.handleCloseMap} dialogClassName="modal-90w">
+      <Modal show={this.props.showMap} onHide={handleCloseMap} dialogClassName="modal-90w">
         <Modal.Body className="map-modal">
           <div id="floating-panel">
             <div className="panel-nav">
-              <div className="nav-btns">
-                <a className="left-btn left-arrow-btn" href="/#">
+              <div onClick={handleCloseMap} className="nav-btns">
+                <div className="left-btn left-arrow-btn" href="/#">
                   <i className="fas fa-chevron-left"></i>
-                </a>
-                <a className="left-btn heart-btn" href="/#">
+                </div>
+                <div className="left-btn heart-btn" href="/#">
                   <i className="fa fa-heart" aria-hidden="true"></i>
-                </a>
+                </div>
               </div>
             </div>
             <div className="panel-controls">
