@@ -15,127 +15,66 @@ import { MDBBtn, MDBIcon } from 'mdbreact'
 import CustomModal from './Modal'
 import SearchInput from './SearchLocationInput'
 import MapModal from './MapModal'
-// import location from './images/location.svg'
+import markerIcon from './images/marker.svg'
+import specialMarkerIcon from './images/special-marker.svg'
 
 const entities = [
   {
     id: 0,
     city_id: 0,
     name: 'AC building',
-    lat: 21.0324413,
-    lng: 105.7830461,
+    lat: 21.03232780026251,
+    lng: 105.78304995678835,
+    image: true,
     polyline: [
-      { lat: 21.032268423406876, lng: 105.78332182269813 },
-      { lat: 21.032673992461593, lng: 105.78328427177192 },
-      { lat: 21.032788971942587, lng: 105.7821631084037 },
-      { lat: 21.032388410229043, lng: 105.78206654887916 },
-      { lat: 21.032268423406876, lng: 105.78332182269813 },
+      { lat: 21.032451724208073, lng: 105.78293864511423 },
+      { lat: 21.032415423264997, lng: 105.78318406723909 },
+      { lat: 21.032170078728175, lng: 105.78313846968584 },
+      { lat: 21.03222515610835, lng: 105.78289304756098 },
+      { lat: 21.032451724208073, lng: 105.78293864511423 },
     ],
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 1,
     city_id: 0,
     name: 'Ho Hoan Kiem',
-    lat: 21.0287797,
-    lng: 105.850176,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
+    lat: 21.02238734675524,
+    lng: 105.8548718197642 ,
   },
   {
     id: 2,
     city_id: 1,
     name: 'Cau Rong',
-    lat: 16.0610497,
-    lng: 108.2252116,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
+    lat: 16.062269481950707,
+    lng: 108.23130259671314,
   },
   {
     id: 3,
     city_id: 1,
-    name: 'Cau Vang',
-    lat: 15.9949857,
-    lng: 107.9943842,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
+    name: 'Asia Park',
+    lat: 16.038561178018778,
+    lng: 108.22618447763062,
   },
   {
     id: 4,
     city_id: 2,
     name: 'Nha tho Da',
-    lat: 12.2468,
-    lng: 109.1858796,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 0.6470588235294118,
-        red: 1
-      },
-      pixelSize: 20
-    }
+    lat: 12.246725010295867,
+    lng: 109.1881680331193,
   },
   {
     id: 5,
     city_id: 2,
     name: 'Thap Ba',
-    lat: 12.2653933,
-    lng: 109.1932058,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 0.6470588235294118,
-        red: 1
-      },
-      pixelSize: 20
-    }
+    lat: 12.265405599627554,
+    lng: 109.1944020778975,
   },
   {
     id: 6,
     city_id: 3,
     name: 'Bitexco',
-    lat: 10.7719937,
-    lng: 106.7057951,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 0,
-        red: 0
-      },
-      pixelSize: 20
-    }
+    lat: 10.77296411969166,
+    lng: 106.7054425715652,
   },
   {
     id: 7,
@@ -143,47 +82,20 @@ const entities = [
     name: 'Văn miếu quốc tử giám',
     lat: 21.02939214531629,
     lng: 105.83624913068846,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 8,
     city_id: 4,
     name: 'Texas building',
-    lat: 31.885846490482866,
-    lng: -99.90773359728587,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 0.6470588235294118,
-        red: 1
-      },
-      pixelSize: 20
-    }
+    lat: 29.38903807067983,
+    lng: -94.91513500165428,
   },
   {
     id: 9,
     city_id: 5,
     name: 'California building',
-    lat: 36.45054207940431,
-    lng: -120.15164770794084,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
+    lat: 35.12471886317634,
+    lng: -117.98415348906342,
   },
   {
     id: 10,
@@ -191,47 +103,20 @@ const entities = [
     name: 'Chicago building',
     lat: 41.84879726701267,
     lng: -87.68257361576919,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 11,
     city_id: 7,
     name: 'Los Angeles building',
-    lat: 33.98228676730012,
-    lng: -118.24967853318772,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 0,
-        red: 0
-      },
-      pixelSize: 20
-    }
+    lat: 34.051519663913176,
+    lng: -118.24312176636627,
   },
   {
     id: 12,
     city_id: 4,
     name: 'Texas building 2',
-    lat: 31.95911405710053,
-    lng: -99.89677097869526,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 0.6470588235294118,
-        red: 1
-      },
-      pixelSize: 20
-    }
+    lat: 29.384248117725974,
+    lng: -94.90069379421364,
   },
 ]
 
@@ -317,6 +202,13 @@ const levels = [
   },
 ]
 
+let citiesArr = countries.map(country => country.cities)
+let cities = [].concat.apply([], citiesArr)
+
+const maxHeightShowCountry = 0
+const maxHeightShowCity = 20000000
+const maxHeightShowProject = 1700000
+
 class App extends PureComponent {
   viewer
   constructor(props) {
@@ -325,16 +217,18 @@ class App extends PureComponent {
       show: false,
       name: '',
       showMap: false,
+      userLocation: null,
       
       entity: null,
       displayLevel: 'city',
       activedCity: null,
-      userLocation: null,
       showCities: {
         // fix me
         0: true,
         1: true
-      }
+      },
+      showCityEntities: false,
+      showProjectEntities: false,
     }
   }
   componentDidMount() {
@@ -347,7 +241,26 @@ class App extends PureComponent {
     this.viewer.timeline.container.style.visibility = 'hidden';
     this.viewer.scene.screenSpaceCameraController.minimumZoomDistance = 70000;
     this.viewer.scene.screenSpaceCameraController.maximumZoomDistance = 40000000;
-    this.viewer.scene.screenSpaceCameraController._minimumZoomRate = 300;
+    this.viewer.scene.screenSpaceCameraController._minimumZoomRate = 30000;
+
+    this.viewer.camera.changed.addEventListener(() => this.onZoom());
+  }
+
+  onZoom = () => {
+    const zoomHeight = this.viewer.camera.positionCartographic.height
+    console.log('zoomHeight', zoomHeight)
+    if (zoomHeight <= maxHeightShowCity && zoomHeight > maxHeightShowProject) {
+      this.setState({
+        showCityEntities: true,
+        showProjectEntities: false
+      })
+    }
+    if (zoomHeight <= maxHeightShowProject) {
+      this.setState({
+        showProjectEntities: true,
+        showCityEntities: false
+      })
+    }
   }
 
   loadScript = (url) => {
@@ -357,17 +270,13 @@ class App extends PureComponent {
     if (script.readyState) {
       script.onreadystatechange = function () {
         if (script.readyState === "loaded" || script.readyState === "complete") {
-          // console.log('script loaded')
           script.onreadystatechange = null;
           this.searchInput.handleScriptLoad()
-          // this.mapModal.initMap()
         }
       };
     } else {
       script.onload = () => {
-        console.log('script loaded 1')
         this.searchInput.handleScriptLoad()
-        // this.mapModal.initMap()
       }
     }
   
@@ -396,7 +305,7 @@ class App extends PureComponent {
 
   onClickPosition = (city) => {
     this.viewer.camera.flyTo({
-      destination: this.parsePostition(city.lat, city.lng, 70000)
+      destination: this.parsePostition(city.lat, city.lng, 90000)
     })
     this.setState({
       displayLevel: 'project',
@@ -438,8 +347,10 @@ class App extends PureComponent {
     })
   }
 
-  onClickEntity = (entity) => {
-    console.log('entity', entity)
+  onClickEntity = (entity, needCallback = true) => {
+    if (!needCallback) {
+      return
+    }
     this.handleShow(entity)
   }
 
@@ -455,19 +366,57 @@ class App extends PureComponent {
     })
   }
 
+  generateEntities(data, needCallback = true) {
+    console.log('data', data)
+    return data.map((item, index) => {
+      console.log(item)
+      let billboard
+      if (!item.image) {
+        billboard = { image: markerIcon }
+      } else {
+        billboard = { image: specialMarkerIcon }
+      }
+      return (
+        <Entity
+          position={this.parsePostition(item.lat, item.lng)}
+          billboard={billboard}
+          name={item.name}
+          key={index}
+          onClick={() => this.onClickEntity(item, needCallback)}
+        >
+        </Entity>
+      )
+    })
+  }
+
   render() {
-    const { displayLevel, activedCity, userLocation, showCities } = this.state
+    const { 
+      displayLevel,
+      activedCity,
+      userLocation,
+      showCities,
+      showCityEntities,
+      showProjectEntities 
+    } = this.state
     let projectsData = []
     if (activedCity) {
       const activedCityId = activedCity.id;
       projectsData = entities.filter(entity => entity.city_id == activedCityId)
     }
-    // const billboard = {image: location}
+
+    let entitiesRender = null
+
+    if (showCities && !showProjectEntities) {
+      entitiesRender = this.generateEntities(cities, false)
+    } else {
+      entitiesRender = this.generateEntities(entities)
+    }
 
     return (
       <div>
-        <Viewer ref={e => { this.viewer = e && e.cesiumElement; }} full
-className = "2d-modal-wrap"
+        <Viewer ref={e => { this.viewer = e && e.cesiumElement; }} 
+          full
+          selectionIndicator={false}
         >
           <div className="control-btns">
             <div className="search-input">
@@ -538,10 +487,10 @@ className = "2d-modal-wrap"
                 <div className="back">
                   <i className="fas fa-chevron-left"
                     onClick={() => {
-                      this.setState({ displayLevel: 'city', activedCity: null})
                       this.viewer.camera.flyTo({
-                        destination: this.parsePostition(userLocation.coords.latitude, userLocation.coords.longitude, 10000000)
+                        destination: this.parsePostition(activedCity.lat, activedCity.lng, 10000000)
                       })
+                      this.setState({ displayLevel: 'city', activedCity: null})
                     }}
                   />
                 </div>
@@ -583,17 +532,7 @@ className = "2d-modal-wrap"
               </div>
             </div> 
           }
-          {entities.map((entity, index) =>
-            <Entity
-              position={this.parsePostition(entity.lat, entity.lng)}
-              point={entity.point}
-              // billboard={billboard}
-              name={entity.name}
-              key={index}
-              onClick={() => this.onClickEntity(entity)}
-            >
-            </Entity>
-          )}
+          {entitiesRender}
         </Viewer>
 
         <CustomModal
