@@ -50,26 +50,20 @@
   top: 1rem;
   left: 1rem;
   right: 0;
-
-  
-  .search-input {
-    width: 20%;
-    input {
-      border-radius: 0 !important;
+  .search-input{
+    width:20%;
+    .search-location-input{
+        .pac-target-input{
+          padding-right:20px;
+        }
     }
   }
   .search-btn {
-    margin-left: -9px;
-    border-radius: 0 !important;
-    // border-top-right-radius: 0.25rem !important;
-    // border-bottom-right-radius: 0.25rem !important;
+    margin-left: -20px;
     .text {
       color: white;
-      padding: 0 1.2rem;
+      padding: 0 5px;
     }
-    border-top-right-radius: 5px !important;
-    border-bottom-right-radius: 5px!important;
-    padding:0;
   }
 
 
@@ -87,33 +81,8 @@
     .fa-2x {
       font-size: 1.1rem !important;
     }
-    padding:11px!important;
+    padding:7px!important;
     border-radius: 5px;
-  }
-
-  @media (min-width: 1400px) {
-    .search-btn, input {
-      font-size: 1.3rem !important;
-    }
-    .search-input {
-      input {
-        display: flex;
-        align-items: center;
-        padding-top: 0;
-        border-top-left-radius: 5px !important;
-        border-bottom-left-radius: 5px !important;
-      }
-      input::placeholder {
-        font-size: 1rem;
-        vertical-align: middle;
-      }
-    }
-    .search-btn > .text {
-      font-size: 1rem !important;
-      display: inline-block;
-      box-sizing: border-box;
-      padding: 10px;
-    }
   }
 }
 
@@ -133,18 +102,15 @@
   height: 100%;
 }
 
-$infor-nav-width: 385px;
+$infor-nav-width: 280px;
 $control-width: 40px;
 .move-below-control-btns {
   right: calc(#{$control-width} + #{$infor-nav-width}) !important;
-  bottom: 402px !important;
+  bottom: 334px !important; //fix me
 }
 .move-switch-map-btns {
   right: calc(#{ $infor-nav-width } + 52px);
   left: auto !important;
-}
-.move-full-screen-btn {
-  right: $infor-nav-width !important;
 }
 
 /* Optional: Makes the sample page fill the window. */
@@ -224,8 +190,8 @@ body {
   color: #2281d4;
 }
 .left-arrow-btn{
-  margin-right: 20%;
-
+    margin-left: 20%;
+    margin-right: 10%;
 }
 .left-btn i{
    font-size: 37px;
@@ -249,14 +215,11 @@ body {
 }
 /*begin according menu*/
 .accordion-menu{
-  // padding-top: 5%;
   position: absolute;
-  // top:0;
   top: 60px;
   left: 0;
-  // left: -400px;
   height: 100%;
-  width: 290px;
+  width: 260px;
   background-color: #ffffff;
   -webkit-transition: all 1.5s ease;
   -moz-transition: all 1.5s ease;
@@ -270,7 +233,7 @@ button.accordion{
   display: block;
   width: 100%;
   text-align: left;
-  font-size: 16px;
+  font-size: 14px;
   font-weight:bold;
   padding:15px 0;
 }
@@ -398,14 +361,12 @@ button.accordion svg{
 }
 
 
-
-
 /*begin infor-nav */
 .infor-nav{
+  width:340px;
   position: absolute;
   right: 0;
   top: 0;
-  width: 280px;
   height: 100%;
   -webkit-transition: all 1.5s ease;
   -moz-transition: all 1.5s ease;
@@ -413,6 +374,7 @@ button.accordion svg{
   -ms-transition: all 1.5s ease;
   transition: all 1.5s ease;
   background-color:#ffffff;
+  font-size:14px;
 }
 
 .detail-location{
@@ -433,6 +395,7 @@ button.accordion svg{
 .detail-location a svg{
   display: inline-block;
   vertical-align: middle;
+  margin-right: 5px;
 }
 .detail-location{
   background-color: #ffffff;
@@ -440,11 +403,11 @@ button.accordion svg{
   margin-bottom: 3px;
 }
 .detail-location-info {
-  padding: 0 10px;
+  padding: 0 5px;
 }
 .price-infor{
   background-color: #ffffff;
-  padding: 10px 10px 5px 10px;
+  padding: 5px;
   box-sizing: border-box;
 
   p {
@@ -452,9 +415,9 @@ button.accordion svg{
   }
 }
 .price-infor .price{
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 700;
-  margin-right: 12px;
+  margin-right: 10px;
 }
 .price-infor p:first-child a{
   text-decoration: none;
@@ -506,12 +469,7 @@ button.accordion svg{
 .chevron-down {
   display:inline-block;width:1em;height:1em;font-size:18px;color:inherit;fill:currentColor
 }
-// 
-
-
-
-
-
+//
 .common-price{
   margin-top: 3px;
   background-color: #ffffff;
@@ -539,6 +497,7 @@ button.accordion svg{
   margin-top: 5px;
   padding: 5px;
   box-sizing: border-box;
+  position: relative;
 }
 .qa a{
   display: inline-block;
@@ -559,15 +518,29 @@ button.accordion svg{
   padding: 3px;
   border-radius: 5px;
 }
+.qa .answer-value{
+    text-transform:capitalize;
+    font-weight:bold;
+}
 .qa a svg{
   vertical-align: middle;
 }
 .qa .answer span{
     color: #0000ff;
 }
+.qa .list-answer{
+  position: absolute;
+  top:100%;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.42); 
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.42);
+    width: 200px;
+    padding:10px;
+    left: 128px;
+    display:none;
+}
 .popup-img{
-  width: 42%;
-  height: 54%;
+  width: 50%;
+  height: 70%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -580,20 +553,24 @@ button.accordion svg{
   -o-transition: all 1.5s ease;
   -ms-transition: all 1.5s ease;
   transition: all 1.5s ease;
-  margin: 8% auto;
+  margin: 3% auto;
   
 }
-.overlay-popup-img{
+.overlay-popup-img,
+.overlay-popup-contact{
   position: fixed;
-  top: 0;
+  top: -100%;
   height: 100%;
   left: 0;
   width: 100%;
   background-color: rgba(1,1,1,0.9);
   z-index: 99999999999999999999;
-  display: none;
+   -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
-
 /*end quynq custom*/
 
 @media(max-width: 1600px) {
@@ -605,6 +582,11 @@ button.accordion svg{
     max-height: 480px;
     overflow: auto;
   }
+  .slider-thumbnails {
+    .inner-item{
+      min-height:120px;
+    }
+  }
 }
 .modal-90w{
     width:100%;
@@ -612,18 +594,95 @@ button.accordion svg{
     margin:0;
   }
 .move-full-screen-btn{
-  right: 280px !important;
+  right: 333px !important;
 }
-.move-switch-map-btns{
-  right: 354px !important;
+.gmnoprint.gm-bundled-control.gm-bundled-control-on-bottom.move-below-control-btns,
+.gmnoprint.gm-bundled-control.gm-bundled-control-on-bottom{
+  right: 373px !important;
+  bottom: 335px !important;
+  .gm-svpc{
+      top: 28px!important;
+  }
 }
-#cur-location-btn{
-  right: -125px !important
-}
-.gmnoprint{
-  right: 320px !important;
+.gmnoprint.move-switch-map-btns{
+   right: 376px !important;
 }
 .fade.modal.show{
   padding-left:0!important;
 }
+.btn-rgba-stylish-strong{
+  position: fixed!important;
+  top: 58px;
+  left: 40%;
+}
+
+/*begin overlay-popup-contact*/
+.overlay-popup-contact{
+  .popup-inner{
+      width:400px;
+      margin:100px auto;
+      border-radius: 4px;
+      background-color: #eaeaea;
+      padding: 14px 16px 10px 16px;
+      .title{
+        text-align: center;
+        font-size: 18px;
+      }
+      .input-item{
+          border: 1px solid #c4c4c4;
+          background-color: #ffff;
+          position: relative;
+          margin-bottom:10px;
+         .form-control{
+            border:none;
+            background-color: transparent;
+            border: none;
+            background-color: transparent;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            padding-left: 30px;
+         }
+         svg{
+            position: absolute;
+            top: 4px;
+            width: 20px;
+            left: 5px;
+         }
+      }
+      .checkbox-item,
+      .btn-item,
+      .note-item{
+          border:initial;
+          background-color: transparent;
+      }  
+      .textarea-item{
+           .form-control{
+             padding:10px!important;
+             height: 70px;
+          }
+      }
+      .btn-item{
+          .btn{
+                color: #fff;
+                background-color: #d92228;
+                border-color: #d92228;
+                border-radius: 30px;
+          }
+      }
+      .note-item{
+          p{
+              font-size:12px;
+              text-align:justify;
+          }
+      }
+    }
+ }
+ .acctive_drop{
+    display:block;
+ }
+
+/*end overlay-popup-contact*/
+
 /*end quynq custom*/
