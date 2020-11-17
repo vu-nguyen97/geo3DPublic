@@ -245,24 +245,60 @@ const countries = [
         name: 'Hanoi',
         lat: 21.0245,
         lng: 105.84117,
+        point: {
+          color: {
+            alpha: 1,
+            blue: 1,
+            green: 1,
+            red: 1
+          },
+          pixelSize: 18
+        }
       },
       {
         id: 1,
         name: 'Da Nang',
         lat: 16.06778,
         lng: 108.22083,
+        point: {
+          color: {
+            alpha: 1,
+            blue: 0,
+            green: 1,
+            red: 1
+          },
+          pixelSize: 18
+        }
       },
       {
         id: 2,
         name: 'Nha Trang',
         lat: 12.24507,
         lng: 109.19432,
+        point: {
+          color: {
+            alpha: 1,
+            blue: 0,
+            green: 0.6470588235294118,
+            red: 1
+          },
+          pixelSize: 18
+        }
       },
       {
         id: 3,
         name: 'Ho Chi Minh',
         lat: 10.82302,
         lng: 106.62965,
+        point: {
+          color: {
+            alpha: 1,
+            blue: 1,
+            green: 0,
+            red: 0
+          },
+          pixelSize: 18
+        }
       },
     ]
   },
@@ -317,6 +353,13 @@ const levels = [
   },
 ]
 
+let citiesArr = countries.map(country => country.cities)
+let cities = [].concat.apply([], citiesArr)
+
+const maxHeightShowCountry = 0
+const maxHeightShowCity = 20000000
+const maxHeightShowProject = 1700000
+
 class App extends PureComponent {
   viewer
   constructor(props) {
@@ -334,7 +377,9 @@ class App extends PureComponent {
         // fix me
         0: true,
         1: true
-      }
+      },
+      showCityEntities: false,
+      showProjectEntities: false,
     }
   }
   componentDidMount() {
@@ -347,7 +392,26 @@ class App extends PureComponent {
     this.viewer.timeline.container.style.visibility = 'hidden';
     this.viewer.scene.screenSpaceCameraController.minimumZoomDistance = 70000;
     this.viewer.scene.screenSpaceCameraController.maximumZoomDistance = 40000000;
-    this.viewer.scene.screenSpaceCameraController._minimumZoomRate = 300;
+    this.viewer.scene.screenSpaceCameraController._minimumZoomRate = 30000;
+
+    this.viewer.camera.changed.addEventListener(() => this.onZoom());
+  }
+
+  onZoom = () => {
+    const zoomHeight = this.viewer.camera.positionCartographic.height
+    console.log('zoomHeight', zoomHeight)
+    if (zoomHeight <= maxHeightShowCity && zoomHeight > maxHeightShowProject) {
+      this.setState({
+        showCityEntities: true,
+        showProjectEntities: false
+      })
+    }
+    if (zoomHeight <= maxHeightShowProject) {
+      this.setState({
+        showProjectEntities: true,
+        showCityEntities: false
+      })
+    }
   }
 
   loadScript = (url) => {
@@ -456,7 +520,14 @@ class App extends PureComponent {
   }
 
   render() {
-    const { displayLevel, activedCity, userLocation, showCities } = this.state
+    const { 
+      displayLevel,
+      activedCity,
+      userLocation,
+      showCities,
+      showCityEntities,
+      showProjectEntities 
+    } = this.state
     let projectsData = []
     if (activedCity) {
       const activedCityId = activedCity.id;
@@ -464,9 +535,38 @@ class App extends PureComponent {
     }
     // const billboard = {image: location}
 
+    let entitiesRender = null
+
+    if (showCities && !showProjectEntities) {
+      entitiesRender = cities.map((city, index) =>
+        <Entity
+          position={this.parsePostition(city.lat, city.lng)}
+          point={city.point}
+          name={city.name}
+          key={index}
+          onClick={() => { return }}
+        >
+        </Entity>
+      )
+    } else {
+      entitiesRender = entities.map((entity, index) =>
+        <Entity
+          position={this.parsePostition(entity.lat, entity.lng)}
+          point={entity.point}
+          name={entity.name}
+          key={index}
+          onClick={() => this.onClickEntity(entity)}
+        >
+        </Entity>
+      )
+    }
+
     return (
       <div>
-        <Viewer ref={e => { this.viewer = e && e.cesiumElement; }} full>
+        <Viewer ref={e => { this.viewer = e && e.cesiumElement; }} 
+          full
+          selectionIndicator={false}
+        >
           <div className="control-btns">
             <div className="search-input">
               <SearchInput onRef={ref => { this.searchInput = ref }} callback={this.flyTo} />
@@ -581,17 +681,7 @@ class App extends PureComponent {
               </div>
             </div> 
           }
-          {entities.map((entity, index) =>
-            <Entity
-              position={this.parsePostition(entity.lat, entity.lng)}
-              point={entity.point}
-              // billboard={billboard}
-              name={entity.name}
-              key={index}
-              onClick={() => this.onClickEntity(entity)}
-            >
-            </Entity>
-          )}
+          {entitiesRender}
         </Viewer>
 
         <CustomModal
