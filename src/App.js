@@ -33,15 +33,6 @@ const entities = [
       { lat: 21.03222515610835, lng: 105.78289304756098 },
       { lat: 21.032451724208073, lng: 105.78293864511423 },
     ],
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 1,
@@ -49,15 +40,6 @@ const entities = [
     name: 'Ho Hoan Kiem',
     lat: 21.02238734675524,
     lng: 105.8548718197642 ,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 2,
@@ -65,15 +47,6 @@ const entities = [
     name: 'Cau Rong',
     lat: 16.062269481950707,
     lng: 108.23130259671314,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 3,
@@ -81,15 +54,6 @@ const entities = [
     name: 'Asia Park',
     lat: 16.038561178018778,
     lng: 108.22618447763062,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 4,
@@ -97,15 +61,6 @@ const entities = [
     name: 'Nha tho Da',
     lat: 12.246725010295867,
     lng: 109.1881680331193,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 0.6470588235294118,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 5,
@@ -113,15 +68,6 @@ const entities = [
     name: 'Thap Ba',
     lat: 12.265405599627554,
     lng: 109.1944020778975,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 0.6470588235294118,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 6,
@@ -129,15 +75,6 @@ const entities = [
     name: 'Bitexco',
     lat: 10.77296411969166,
     lng: 106.7054425715652,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 0,
-        red: 0
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 7,
@@ -145,15 +82,6 @@ const entities = [
     name: 'Văn miếu quốc tử giám',
     lat: 21.02939214531629,
     lng: 105.83624913068846,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 8,
@@ -161,15 +89,6 @@ const entities = [
     name: 'Texas building',
     lat: 29.38903807067983,
     lng: -94.91513500165428,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 0.6470588235294118,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 9,
@@ -177,15 +96,6 @@ const entities = [
     name: 'California building',
     lat: 35.12471886317634,
     lng: -117.98415348906342,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 10,
@@ -193,15 +103,6 @@ const entities = [
     name: 'Chicago building',
     lat: 41.84879726701267,
     lng: -87.68257361576919,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 1,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 11,
@@ -209,15 +110,6 @@ const entities = [
     name: 'Los Angeles building',
     lat: 34.051519663913176,
     lng: -118.24312176636627,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 1,
-        green: 0,
-        red: 0
-      },
-      pixelSize: 20
-    }
   },
   {
     id: 12,
@@ -225,15 +117,6 @@ const entities = [
     name: 'Texas building 2',
     lat: 29.384248117725974,
     lng: -94.90069379421364,
-    point: {
-      color: {
-        alpha: 1,
-        blue: 0,
-        green: 0.6470588235294118,
-        red: 1
-      },
-      pixelSize: 20
-    }
   },
 ]
 
@@ -319,6 +202,13 @@ const levels = [
   },
 ]
 
+let citiesArr = countries.map(country => country.cities)
+let cities = [].concat.apply([], citiesArr)
+
+const maxHeightShowCountry = 0
+const maxHeightShowCity = 20000000
+const maxHeightShowProject = 1700000
+
 class App extends PureComponent {
   viewer
   constructor(props) {
@@ -336,7 +226,9 @@ class App extends PureComponent {
         // fix me
         0: true,
         1: true
-      }
+      },
+      showCityEntities: false,
+      showProjectEntities: false,
     }
   }
   componentDidMount() {
@@ -344,12 +236,31 @@ class App extends PureComponent {
     this.loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
     )
-    // this.getUserLocation()
+    this.getUserLocation()
     this.viewer.animation.container.style.visibility = 'hidden';
     this.viewer.timeline.container.style.visibility = 'hidden';
     this.viewer.scene.screenSpaceCameraController.minimumZoomDistance = 70000;
     this.viewer.scene.screenSpaceCameraController.maximumZoomDistance = 40000000;
-    this.viewer.scene.screenSpaceCameraController._minimumZoomRate = 300;
+    this.viewer.scene.screenSpaceCameraController._minimumZoomRate = 30000;
+
+    this.viewer.camera.changed.addEventListener(() => this.onZoom());
+  }
+
+  onZoom = () => {
+    const zoomHeight = this.viewer.camera.positionCartographic.height
+    console.log('zoomHeight', zoomHeight)
+    if (zoomHeight <= maxHeightShowCity && zoomHeight > maxHeightShowProject) {
+      this.setState({
+        showCityEntities: true,
+        showProjectEntities: false
+      })
+    }
+    if (zoomHeight <= maxHeightShowProject) {
+      this.setState({
+        showProjectEntities: true,
+        showCityEntities: false
+      })
+    }
   }
 
   loadScript = (url) => {
@@ -359,17 +270,13 @@ class App extends PureComponent {
     if (script.readyState) {
       script.onreadystatechange = function () {
         if (script.readyState === "loaded" || script.readyState === "complete") {
-          // console.log('script loaded')
           script.onreadystatechange = null;
           this.searchInput.handleScriptLoad()
-          // this.mapModal.initMap()
         }
       };
     } else {
       script.onload = () => {
-        console.log('script loaded 1')
         this.searchInput.handleScriptLoad()
-        // this.mapModal.initMap()
       }
     }
   
@@ -440,8 +347,10 @@ class App extends PureComponent {
     })
   }
 
-  onClickEntity = (entity) => {
-    console.log('entity', entity)
+  onClickEntity = (entity, needCallback = true) => {
+    if (!needCallback) {
+      return
+    }
     this.handleShow(entity)
   }
 
@@ -457,17 +366,58 @@ class App extends PureComponent {
     })
   }
 
+  generateEntities(data, needCallback = true) {
+    console.log('data', data)
+    return data.map((item, index) => {
+      console.log(item)
+      let billboard
+      if (!item.image) {
+        billboard = { image: markerIcon }
+      } else {
+        billboard = { image: specialMarkerIcon }
+      }
+      return (
+        <Entity
+          position={this.parsePostition(item.lat, item.lng)}
+          billboard={billboard}
+          name={item.name}
+          key={index}
+          onClick={() => this.onClickEntity(item, needCallback)}
+        >
+        </Entity>
+      )
+    })
+  }
+
   render() {
-    const { displayLevel, activedCity, userLocation, showCities } = this.state
+    const { 
+      displayLevel,
+      activedCity,
+      userLocation,
+      showCities,
+      showCityEntities,
+      showProjectEntities 
+    } = this.state
     let projectsData = []
     if (activedCity) {
       const activedCityId = activedCity.id;
       projectsData = entities.filter(entity => entity.city_id == activedCityId)
     }
 
+    let entitiesRender = null
+
+    if (showCities && !showProjectEntities) {
+      entitiesRender = this.generateEntities(cities, false)
+    } else {
+      entitiesRender = this.generateEntities(entities)
+    }
+
     return (
       <div>
-        <Viewer ref={e => { this.viewer = e && e.cesiumElement; }} full>
+        <Viewer ref={e => { this.viewer = e && e.cesiumElement; }} 
+          full
+          selectionIndicator={false}
+        >
           <div className="control-btns">
             <div className="search-input">
               <SearchInput onRef={ref => { this.searchInput = ref }} callback={this.flyTo} />
@@ -582,26 +532,7 @@ class App extends PureComponent {
               </div>
             </div> 
           }
-          {entities.map((entity, index) => {
-            let billboard;
-            if (!entity.image) {
-              billboard = { image: markerIcon }
-            } else {
-              billboard = { image: specialMarkerIcon }
-            }
-            return (
-              <Entity
-                position={this.parsePostition(entity.lat, entity.lng)}
-                // point={entity.point}
-                billboard={billboard}
-                name={entity.name}
-                key={index}
-                onClick={() => this.onClickEntity(entity)}
-              >
-              </Entity>
-            )
-          }
-          )}
+          {entitiesRender}
         </Viewer>
 
         <CustomModal
