@@ -77,18 +77,19 @@ class MapModal extends PureComponent {
     this.onShowControllerOfMap(true)
     
     map.addListener('bounds_changed', function() {
-      if (
-          $(map.getDiv()).children().eq(0).height() == window.innerHeight &&
-          $(map.getDiv()).children().eq(0).width()  == window.innerWidth 
-        ) {
-          this.setState({ isFullScreen : true })
-          this.onShowControllerOfMap(false)
-      } else {
-        if (this.state.isFullScreen) {
-          this.setState({ isFullScreen : false })
-          this.onShowControllerOfMap(true)
+      const self = this
+      $(document).bind('webkitfullscreenchange mozfullscreenchange fullscreenchange', function() {
+        var isFullScreen = document.fullScreen ||
+            document.mozFullScreen ||
+            document.webkitIsFullScreen;
+        if (isFullScreen) {
+            self.setState({ isFullScreen : true })
+            self.onShowControllerOfMap(false)
+        } else {
+            self.setState({ isFullScreen : false })
+            self.onShowControllerOfMap(true)
         }
-      }
+      });
     }.bind(this))
   }
 
