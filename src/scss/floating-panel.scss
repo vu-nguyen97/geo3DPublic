@@ -1,12 +1,17 @@
-$left-panel-with: 290px;
+$left-panel-with: 260px;
 #floating-panel {
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: -100px;
     z-index: 5;
     text-align: center;
     font-family: "Roboto", "sans-serif";
+      -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
   .panel-nav {
     width: $left-panel-with;
     margin-right: 3px;
@@ -22,7 +27,7 @@ $left-panel-with: 290px;
         cursor: pointer;
         border-radius: 50%;
         text-align: center;
-        border: 3px solid #4cb2ed;
+        border: 3px solid #6b5e62;
         position: relative;
         padding-top: 9px;
         box-sizing: border-box;
@@ -31,7 +36,7 @@ $left-panel-with: 290px;
         font-size: 30px;
         left: 0;
         right: 0;
-        color: #e31460;
+        color: #6b5e62;
         -webkit-transition: all 0.5s ease;
         -moz-transition: all 0.5s ease;
         -o-transition: all 0.5s ease;
@@ -39,7 +44,7 @@ $left-panel-with: 290px;
         transition: all 0.5s ease;
       }
       .left-arrow-btn i{
-        color: #4cb2ed;
+        color: #6b5e62;
       }
       .left-arrow-btn i:hover{
         color: #e31460;
