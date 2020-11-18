@@ -280,6 +280,9 @@ class App extends PureComponent {
       if (this.state.activedCity?.name === 'Los Angeles') {
         cityBorder = GeoJsonDataSource.load('./la.geojson')
       }
+      if (this.state.activedCity?.name === 'Nha Trang') {
+        cityBorder = GeoJsonDataSource.load('./nhatrang.geojson')
+      }
       
       cityBorder && this.viewer.dataSources.add(cityBorder)
 
