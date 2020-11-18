@@ -52,15 +52,18 @@
   left: 1rem;
   right: 0;
   .search-input{
-    width:20%;
+    width:30%;
+    min-width:400px;
     .search-location-input{
         .pac-target-input{
+          border-radius: initial;
           padding-right:20px;
         }
     }
   }
   .search-btn {
-    margin-left: -20px;
+    border-radius: initial;
+    margin-left: -12px;
     .text {
       color: white;
       padding: 0 5px;
@@ -205,9 +208,9 @@ body {
 }
 /*begin according menu*/
 .accordion-menu{
-  position: absolute;
+  position: fixed;
+  left: -260px;
   top: 60px;
-  left: 0;
   height: 100%;
   width: 260px;
   background-color: #ffffff;
@@ -235,12 +238,19 @@ button.accordion svg{
   display: none;
 }
 .accordion-menu .panel p{
-  padding-left: 40px;
+   padding-left: 25px;
+  font-size: 14px;
 }
-.accordion-menu .item{
-  margin-left: 10px;
-  position: relative;
-  border-bottom: 1px solid #dcdcdc;
+.accordion-menu {
+  .item{
+      margin-left: 10px;
+      position: relative;
+      border-bottom: 1px solid #dcdcdc;
+  }
+  .item.active .panel{
+    display:block;
+  }
+
 }
 .accordion-menu .item .bottom-arrow{
   position: absolute;
@@ -265,18 +275,18 @@ button.accordion svg{
 /*begin slider thumb*/
 .slider-thumbnails{
     background-color: #000000;
-    position: absolute;
+    position: fixed;
     padding: 1rem 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -200px;
     box-sizing: border-box;
     z-index: 99;
-    -webkit-transition: all 1.5s ease;
-    -moz-transition: all 1.5s ease;
-    -o-transition: all 1.5s ease;
-    -ms-transition: all 1.5s ease;
-    transition: all 1.5s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
 
 }
 .slider-thumbnails .inner-box{
@@ -354,8 +364,8 @@ button.accordion svg{
 /*begin infor-nav */
 .infor-nav{
   width:340px;
-  position: absolute;
-  right: 0;
+  position: fixed;
+  right: -340px;
   top: 0;
   height: 100%;
   -webkit-transition: all 1.5s ease;
@@ -364,7 +374,7 @@ button.accordion svg{
   -ms-transition: all 1.5s ease;
   transition: all 1.5s ease;
   background-color:#ffffff;
-  font-size:14px;
+  font-size:13.5px;
 }
 
 .detail-location{
@@ -519,18 +529,19 @@ button.accordion svg{
     color: #0000ff;
 }
 .qa .list-answer{
-  position: absolute;
-  top:100%;
-  -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.42); 
-    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.42);
+    position: absolute;
+    bottom: 54%;
+    background-color: #ffffff;
+    box-shadow: 3px 3px 10px -5px rgba(0, 0, 0, 0.42);
     width: 200px;
-    padding:10px;
-    left: 128px;
-    display:none;
+    padding: 10px;
+    left: 125px;
+    display: none;
+    border: 1px solid gainsboro;
 }
 .popup-img{
-  width: 50%;
-  height: 70%;
+  width: 60%;
+  height: 60%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -543,7 +554,7 @@ button.accordion svg{
   -o-transition: all 1.5s ease;
   -ms-transition: all 1.5s ease;
   transition: all 1.5s ease;
-  margin: 3% auto;
+  margin: 5% auto;
   
 }
 .overlay-popup-img,
@@ -565,11 +576,9 @@ button.accordion svg{
 
 @media(max-width: 1600px) {
   .accordion-menu {
-    max-height: 400px;
     overflow: auto;
   }
   .infor-nav {
-    max-height: 480px;
     overflow: auto;
   }
   .slider-thumbnails {
