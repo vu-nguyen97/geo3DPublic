@@ -1,6 +1,6 @@
 import './App.scss';
-import { Viewer, Entity, EntityDescription, EntityStaticDescription, Camera, CameraFlyTo } from "resium";
-import { Cartesian3, Rectangle } from "cesium";
+import { Viewer, Entity } from "resium";
+import { Cartesian3, ScreenSpaceEventType } from "cesium";
 import { PureComponent } from 'react'
 import { hot } from "react-hot-loader/root";
 import {
@@ -227,7 +227,7 @@ class App extends PureComponent {
         0: true,
         1: true
       },
-      showCityEntities: false,
+      showCityEntities: true,
       showProjectEntities: false,
     }
   }
@@ -242,6 +242,7 @@ class App extends PureComponent {
     this.viewer.scene.screenSpaceCameraController.minimumZoomDistance = 70000;
     this.viewer.scene.screenSpaceCameraController.maximumZoomDistance = 40000000;
     this.viewer.scene.screenSpaceCameraController._minimumZoomRate = 30000;
+    this.viewer.screenSpaceEventHandler.removeInputAction(ScreenSpaceEventType.LEFT_DOUBLE_CLICK)
 
     this.viewer.camera.changed.addEventListener(() => this.onZoom());
   }
@@ -352,7 +353,7 @@ class App extends PureComponent {
 
   onClickEntity = (entity, isCityView = false) => {
     if (isCityView) {
-      this.flyTo(entity.lat, entity.lng)
+      this.onClickPosition(entity)
       return
     }
     this.handleShow(entity)
@@ -408,7 +409,7 @@ class App extends PureComponent {
 
     let entitiesRender = null
 
-    if (showCities && !showProjectEntities) {
+    if (showCityEntities && !showProjectEntities) {
       entitiesRender = this.generateEntities(cities, true)
     } else {
       entitiesRender = this.generateEntities(entities)
