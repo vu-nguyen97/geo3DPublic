@@ -84,40 +84,90 @@ const entities = [
     lat: 21.02939214531629,
     lng: 105.83624913068846,
   },
+  // {
+  //   id: 8,
+  //   city_id: 4,
+  //   name: 'Texas building',
+  //   lat: 29.38903807067983,
+  //   lng: -94.91513500165428,
+  // },
+  // {
+  //   id: 9,
+  //   city_id: 5,
+  //   name: 'California building',
+  //   lat: 35.12471886317634,
+  //   lng: -117.98415348906342,
+  // },
+  // {
+  //   id: 10,
+  //   city_id: 6,
+  //   name: 'Chicago building',
+  //   lat: 41.84879726701267,
+  //   lng: -87.68257361576919,
+  // },
+  // {
+  //   id: 11,
+  //   city_id: 7,
+  //   name: 'Los Angeles building',
+  //   lat: 34.051519663913176,
+  //   lng: -118.24312176636627,
+  // },
+  // {
+  //   id: 12,
+  //   city_id: 4,
+  //   name: 'Texas building 2',
+  //   lat: 29.384248117725974,
+  //   lng: -94.90069379421364,
+  // },
+
+  // new data
   {
-    id: 8,
-    city_id: 4,
-    name: 'Texas building',
-    lat: 29.38903807067983,
-    lng: -94.91513500165428,
+    id: 13,
+    state_id: 0,
+    city_id: 1000,
+    name: 'Houston, Texas',
+    lat: 29.75548920677555,
+    lng: -95.37552950274825,
   },
   {
-    id: 9,
-    city_id: 5,
-    name: 'California building',
-    lat: 35.12471886317634,
-    lng: -117.98415348906342,
+    id: 14,
+    state_id: 0,
+    city_id: 1001,
+    name: 'Dallas, Texas',
+    lat: 32.776847367729644,
+    lng: -96.77747682036818,
   },
   {
-    id: 10,
-    city_id: 6,
-    name: 'Chicago building',
-    lat: 41.84879726701267,
-    lng: -87.68257361576919,
+    id: 15,
+    state_id: 1,
+    city_id: 1002,
+    name: 'Los Angeles, Califorina',
+    lat: 34.052133818696994,
+    lng: -118.26664374625872,
   },
   {
-    id: 11,
-    city_id: 7,
-    name: 'Los Angeles building',
-    lat: 34.051519663913176,
-    lng: -118.24312176636627,
+    id: 16,
+    state_id: 1,
+    city_id: 1003,
+    name: 'San Francisco, Califorina',
+    lat: 37.767658634544645,
+    lng: -122.39755703551069,
   },
   {
-    id: 12,
-    city_id: 4,
-    name: 'Texas building 2',
-    lat: 29.384248117725974,
-    lng: -94.90069379421364,
+    id: 17,
+    state_id: 2,
+    city_id: 1004,
+    name: 'New York City, New York',
+    lat: 40.68435860063441,
+    lng: -73.96834164426204,
+  },
+  {
+    id: 18,
+    state_id: 3,
+    city_id: 1005,
+    name: 'Phoenix, Arizona',
+    lat: 33.442891424622964,
+    lng: -112.07411045441694,
   },
 ]
 
@@ -155,6 +205,76 @@ const countries = [
   {
     id: 1,
     name: 'United State',
+    states: [
+      {
+        id: 0,
+        name: 'Texas',
+        lat: 29.75548920677555,
+        lng: -95.37552950274825,
+        cities: [
+          {
+            id: 1000,
+            name: 'Houston',
+            lat: 29.75548920677555,
+            lng: -95.37552950274825,
+          },
+          {
+            id: 1001,
+            name: 'Dallas',
+            lat: 32.776847367729644,
+            lng: -96.77747682036818,
+          }
+        ]
+      },
+      {
+        id: 1,
+        name: 'Califorina',
+        lat: 34.052133818696994,
+        lng: -118.26664374625872,
+        cities: [
+          {
+            id: 1002,
+            name: 'Los Angeles',
+            lat: 34.052133818696994,
+            lng: -118.26664374625872,
+          },
+          {
+            id: 1003,
+            name: 'San Francisco',
+            lat: 37.767658634544645,
+            lng: -122.39755703551069,
+          },
+        ]
+      },
+      {
+        id: 2,
+        name: 'New York',
+        lat: 40.68435860063441,
+        lng: -73.96834164426204,
+        cities: [
+          {
+            id: 1004,
+            name: 'New York City',
+            lat: 40.68435860063441,
+            lng: -73.96834164426204,
+          },
+        ]
+      },
+      {
+        id: 3,
+        name: 'Arizona',
+        lat: 33.442891424622964,
+        lng: -112.07411045441694,
+        cities: [
+          {
+            id: 1005,
+            name: 'Phoenix',
+            lat: 33.442891424622964,
+            lng: -112.07411045441694,
+          }
+        ]
+      },
+    ],
     cities: [
       {
         id: 4,
