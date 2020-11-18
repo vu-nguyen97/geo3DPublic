@@ -1,6 +1,6 @@
 import './App.scss';
 import { Viewer, Entity } from "resium";
-import { Cartesian3, ScreenSpaceEventType } from "cesium";
+import { Cartesian3, ScreenSpaceEventType, GeoJsonDataSource } from "cesium";
 import { PureComponent } from 'react'
 import { hot } from "react-hot-loader/root";
 import {
@@ -164,8 +164,8 @@ const countries = [
       {
         id: 5,
         name: 'California',
-        lat: 41.85214488646792,
-        lng: -87.95161731336496,
+        lat: 35.12471886317634,
+        lng: -117.98415348906342,
       },
       {
         id: 6,
@@ -254,12 +254,35 @@ class App extends PureComponent {
   onZoom = () => {
     const zoomHeight = this.viewer.camera.positionCartographic.height
     if (zoomHeight <= maxHeightShowCity && zoomHeight > maxHeightShowProject) {
+      this.viewer.dataSources.removeAll()
       this.setState({
         showCityEntities: true,
         showProjectEntities: false
       })
     }
     if (zoomHeight <= maxHeightShowProject) {
+      let cityBorder = null
+      if (this.state.activedCity?.name === 'Da Nang') {
+        cityBorder = GeoJsonDataSource.load('./danang.geojson')
+      }
+      if (this.state.activedCity?.name === 'Hanoi') {
+        cityBorder = GeoJsonDataSource.load('./hanoi.geojson')
+      }
+      if (this.state.activedCity?.name === 'Ho Chi Minh') {
+        cityBorder = GeoJsonDataSource.load('./hcm.geojson')
+      }
+      if (this.state.activedCity?.name === 'Texas') {
+        cityBorder = GeoJsonDataSource.load('./texas.geojson')
+      }
+      if (this.state.activedCity?.name === 'California') {
+        cityBorder = GeoJsonDataSource.load('./cali.geojson')
+      }
+      if (this.state.activedCity?.name === 'Los Angeles') {
+        cityBorder = GeoJsonDataSource.load('./la.geojson')
+      }
+      
+      cityBorder && this.viewer.dataSources.add(cityBorder)
+
       this.setState({
         showProjectEntities: true,
         showCityEntities: false
