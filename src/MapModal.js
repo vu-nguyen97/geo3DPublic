@@ -137,15 +137,36 @@ class MapModal extends PureComponent {
       });
     
       $(".slider-thumbnails .item").click(function(){
-         $(".overlay-popup-img").css("display","block");
+         $(".overlay-popup-img").css("top","0");
         var img_url = $(this).find(".inner-item").css("background-image");
         console.log(img_url);
         $(".popup-img").attr("style","background-image:"+img_url)
     
       });
       $(".overlay-popup-img").click(function(){
-        $(this).css("display","none");
+        $(this).css("top","-100%");
       });
+
+       $(".qa .question").click(function(){
+          $(".overlay-popup-contact").css("top","0");
+      });
+      $(".overlay-popup-contact").click(function(){
+         $(this).css("top","-100%");
+      });
+      $(".qa .answer").click(function(){
+          if($(this).hasClass("acctive_drop")){
+             $(this).removeClass("acctive_drop");
+            $(this).parent().find(".list-answer").css("display","none");
+        }else{
+              $(this).addClass("acctive_drop");
+              $(this).parent().find(".list-answer").css("display","block");  
+           }
+      });
+    $(".qa .list-answer .dropdown-item").click(function(){
+      $(".answer-value").text($(this).text());
+      $(".list-answer").css("display","none");
+       $(".qa .answer").removeClass("acctive_drop");
+    });
     });
   }
 
@@ -399,7 +420,7 @@ class MapModal extends PureComponent {
   render() {
     const { handleCloseMap } = this.props
     return (
-      <Modal show={this.props.showMap} onHide={handleCloseMap} dialogClassName="modal-90w">
+      <Modal show={this.props.showMap} onHide={handleCloseMap} dialogClassName="modal-90w 2d-modal">
         <Modal.Body className="map-modal">
           <div id="floating-panel">
             <div className="panel-nav">
@@ -645,17 +666,14 @@ class MapModal extends PureComponent {
                     <i className="fas fa-search"></i>
                   </div>
                 </div>
-
                 <div className="item">
                   <div className="inner-item inner-item4 inner-item7 ">
                     <i className="fas fa-search"></i>
                   </div>
                 </div>
-
                 <div className="clearfix"></div>
             </div>
           </div>
-
           <div className="infor-nav">
             <div className="inner">
               <div className="detail-location">
@@ -729,7 +747,7 @@ class MapModal extends PureComponent {
 
               <div className="common-price">
                 <p>
-                  <span className="lb">Days on Realtor.com</span>
+                  <span className="lb">Days on Camly.co</span>
                   <span className="vl">6 Hours</span> 
                   <span className="clearfix"></span>
                 </p>
@@ -757,20 +775,60 @@ class MapModal extends PureComponent {
                   Ask a question
                 </a>
                 <a className="answer" href="/#">
-                  Answer  by <span>GIA</span>
+                  Answer  by <span class="answer-value">GIA</span>
                   <svg data-testid="chevron-down" className="chevron-down" viewBox="0 0 512 512">
                     <path d="M70 128l-27 32 215 224 211-224-27-32-184 196z">
                     </path>
                   </svg>
                 </a>
+                <p className="list-answer">
+                     <a className="dropdown-item" href="#">Layer</a>
+                     <a className="dropdown-item" href="#">GIA</a>
+                     <a className="dropdown-item" href="#">Admin</a>
+                </p>
               </div>
             </div>
           </div>
           
-          <div className="overlay-popup-img">
+          <div className="overlay-popup-img"> <svg data-testid="icon-calculator" viewBox="0 0 512 512" className="icon-calculator"><path d="M325 196H193c-20-4-34-22-34-42 0-21 14-38 34-42h132c20 4 34 21 34 42 0 20-14 38-34 42zm-132-67c-12 1-22 12-22 25s10 24 22 25h132c13-1 22-12 22-25s-9-24-22-25zm3 181c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm80-66c0-10-8-19-19-19s-20 9-20 19c0 11 9 20 20 20s19-9 19-20zm79 0c0-10-8-19-19-19s-20 9-20 19c0 11 9 20 20 20s19-9 19-20zm-79 66c0-11-8-20-19-20s-20 9-20 20 9 20 20 20 19-9 19-20zm79 0c0-11-8-20-19-20s-20 9-20 20 9 20 20 20 19-9 19-20zm-159 65c0-10-9-19-20-19s-20 9-20 19c0 11 9 20 20 20s20-9 20-20zm80 0c0-10-8-19-19-19s-20 9-20 19c0 11 9 20 20 20s19-9 19-20zm-80-131c0-10-9-19-20-19s-20 9-20 19c0 11 9 20 20 20s20-9 20-20zm167 225H149c-31 0-57-25-57-57V100c0-32 26-57 57-57h214c31 0 57 25 57 57v312c0 32-26 57-57 57zM149 73c-15 0-27 12-27 27v312c0 15 12 27 27 27h214c15 0 27-12 27-27V100c0-15-12-27-27-27z"></path></svg>
+                   
             <div className="popup-img">
             </div>
           </div>
+
+          <div className="overlay-popup-contact">
+            <div className="popup-inner">
+                <p className="title">More about this property</p>
+                <div className="input-item">
+                    <svg data-testid="icon-calculator" viewBox="0 0 512 512" className="icon-calculator"><path d="M461 408c-12-42-49-130-140-158 40-28 57-79 42-125-15-47-58-78-106-78-49 0-92 31-107 78-15 46 2 97 42 125C89 277 59 369 51 413c-2 12 1 25 10 35 8 10 20 16 33 17h324c14 0 27-6 36-17s11-26 7-40zM176 159c-1-34 19-63 50-76 30-13 66-6 89 18 23 23 30 58 18 89-13 30-43 50-76 50-45 0-81-37-81-81zm254 270c-3 4-7 6-12 6H95c-5 0-9-2-11-5-3-4-4-8-3-12 10-55 47-148 176-148 115 0 159 92 175 147 1 4 0 8-2 12z"></path></svg>
+                    <input className="form-control mr-sm-2" type="text" placeholder="Full Name" />
+                 </div>   
+                 <div className="input-item">
+                    <svg data-testid="icon-calculator" viewBox="0 0 512 512" className="icon-calculator"><path d="M394 114H109c-37 0-67 31-67 68v182c0 38 30 68 67 68h281c38 0 68-30 68-68V179c0-36-29-65-64-65zm18 229c6 6 6 17 0 23-3 3-7 5-12 5-4 0-8-2-11-5l-80-77-27 21c-8 6-17 9-27 9-9 0-19-3-26-8l-30-21-80 77c-3 3-7 5-12 5-4 0-8-2-11-5s-5-7-5-11c0-5 2-9 5-12l77-73-84-60c-4-3-6-7-7-11s0-8 3-12c5-7 15-8 22-3l140 101c5 3 11 3 16 0l128-100c7-5 17-4 23 3 5 7 4 18-3 23l-76 58z"></path></svg>
+                    <input className="form-control mr-sm-2" type="text" placeholder="Email" />
+                 </div>   
+                  <div className="input-item">
+                    <svg data-testid="icon-calculator" viewBox="0 0 512 512" className="icon-calculator"><path d="M49 148s22 233 288 318c0 0 75 15 110-32 35-48 8-68 8-68l-78-46s-13-8-30 12c-12 12-24 24-37 34 0 0-3 9-22-2-19-10-64-44-140-138-13-15 6-28 6-28l41-38c7-7 7-18 0-26-10-15-28-44-48-82-17-26-58 6-58 6-32 18-48 54-40 90z"></path></svg>
+                    <input className="form-control mr-sm-2" type="text" placeholder="Phone"/>
+                 </div>   
+                 <div className="input-item textarea-item">
+                   <textarea className="content form-control">I am interested in 201 Harrison St Apt 925</textarea>
+                  </div>
+                   <div className="input-item checkbox-item">
+                       <input type="checkbox" className="mr-sm-2"/>
+                       <span>Get pre-approved by a lender.</span>
+                  </div>
+                  <div className="input-item btn-item">
+                      <button type="button" className="btn btn-block btn-danger">Email Agent</button>
+                  </div>
+                  <div className="input-item note-item">
+                     <p>
+                         By proceeding, you consent to receive calls and texts at the number you provided, including marketing by autodialer and prerecorded and artificial voice, and email, from realtor.com and others about your inquiry and other home-related matters, but not as a condition of any purchase; this applies regardless of whether you check, or leave un-checked, any box above. More...
+                     </p>
+                  </div>
+            </div>
+          </div>
+
 
         </Modal.Body>
       </Modal>
