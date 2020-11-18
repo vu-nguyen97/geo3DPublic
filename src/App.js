@@ -238,6 +238,7 @@ class App extends PureComponent {
       showProjectEntities: false,
       displayLevel: 'city',
       listOfCities: [],
+      listOfStates: [],
       filters: {
         country: null,
         state: null,
@@ -432,17 +433,9 @@ class App extends PureComponent {
     })
   }
 
-  onChangeFilter = (name, value) => {
-    this.setState({
-      filters: {
-        ...this.state.filters,
-        [name]: value
-      }
-    })
-    console.log(this.state.filters)
-  }
-
-  handleBlur = () => {
+  handleBlur = (name, value) => {
+    console.log('onBlur')
+    this.handleFilter(name, value)
   }
 
   handleKeyDown = (event, name, value) => {
@@ -453,10 +446,44 @@ class App extends PureComponent {
   }
 
   handleFilter = (name, value) => {
+    const { filters } = this.state
     if (name == 'country') {
-      let activedCountry = countries.find(countryObj => countryObj.name = value)
+      let activedCountry = countries.find(countryObj => countryObj.name == value)
+      if (!activedCountry) {
+        return
+      }
+      const firstCity = activedCountry.cities[0]
+      this.viewer.camera.flyTo({
+        destination: this.parsePostition(firstCity.lat, firstCity.lng, 3500000)
+      })
+
+      // if (value == 'United States') {}
       const listOfCities = activedCountry.cities.map(city => city.name)
-      this.setState({ listOfCities })
+      return this.setState({
+        listOfCities,
+        filters: {
+          ...this.state.filters,
+          country: value
+        }
+      })
+    }
+
+    if (name == 'city') {
+      let activedCountry = countries.find(countryObj => countryObj.name == filters.country)
+      if (!activedCountry) {
+        console.log('no activedCountry')
+      }
+      const cityIndex = activedCountry.cities.findIndex(city => city.name == value)
+      const city = activedCountry.cities[cityIndex]
+      this.viewer.camera.flyTo({
+        destination: this.parsePostition(city.lat, city.lng, 90000)
+      })
+      this.setState({
+        filters: {
+          ...this.state.filters,
+          [name]: value
+        }
+      })
     }
   }
 
@@ -469,7 +496,8 @@ class App extends PureComponent {
       showCityEntities,
       showProjectEntities,
       filters,
-      listOfCities
+      listOfCities,
+      listOfStates
     } = this.state
     const {
       country,
@@ -490,8 +518,6 @@ class App extends PureComponent {
     } else {
       entitiesRender = this.generateEntities(entities)
     }
-
-    // console.log('listOfCities', listOfCities)
 
     return (
       <div>
@@ -539,7 +565,7 @@ class App extends PureComponent {
                 <Autocomplete
                   className="margin-top"
                   id="state"
-                  data={statesArr}
+                  data={listOfStates}
                   placeholder="Enter state name..."
                   onBlur={this.handleBlur}
                   onKeyDown={this.handleKeyDown}
@@ -554,37 +580,37 @@ class App extends PureComponent {
                 onKeyDown={this.handleKeyDown}
               />
             </div>
-            // <div className="d-flex group-container">
-            //   {
-            //     countries.map(country => {
-            //       const { cities } = country
-            //       const isShowCities = showCities[country.id]
-            //       return (
-            //         <ListGroup key={country.id}>
-            //           <ListGroup.Item className="country-name"
-            //             onClick={() => this.handleShowCities(country.id)}
-            //           >
-            //             <span>{country.name}</span>
-            //             <span>
-            //               {
-            //                 isShowCities ? <i className="fas fa-sort-up"/> : <i className="fas fa-sort-down"/>
-            //               }
-            //             </span>
-            //           </ListGroup.Item>
-            //           {
-            //             isShowCities &&
-            //             cities.map((city, index) =>
-            //               <ListGroup.Item action onClick={() => this.onClickPosition(city)} key={index}>
-            //                 {city.name}
-            //               </ListGroup.Item>
-            //             )
-            //           }
-            //         </ListGroup>
-            //       )
-            //     })
-            //   }
-            // </div>
           }
+          {/* <div className="d-flex group-container">
+            {
+              countries.map(country => {
+                const { cities } = country
+                const isShowCities = showCities[country.id]
+                return (
+                  <ListGroup key={country.id}>
+                    <ListGroup.Item className="country-name"
+                      onClick={() => this.handleShowCities(country.id)}
+                    >
+                      <span>{country.name}</span>
+                      <span>
+                        {
+                          isShowCities ? <i className="fas fa-sort-up"/> : <i className="fas fa-sort-down"/>
+                        }
+                      </span>
+                    </ListGroup.Item>
+                    {
+                      isShowCities &&
+                      cities.map((city, index) =>
+                        <ListGroup.Item action onClick={() => this.onClickPosition(city)} key={index}>
+                          {city.name}
+                        </ListGroup.Item>
+                      )
+                    }
+                  </ListGroup>
+                )
+              })
+            }
+          </div> */}
           {
             displayLevel == 'project' &&
             <div className="list-projects">

@@ -145,7 +145,7 @@ class Autocomplete extends Component {
               onKeyDown={e => {
                 onKeyDown(e, id, window.self.state.autocompleteValue)
               }}
-              onBlur={onBlur}
+              onBlur={() => onBlur(id, window.self.state.autocompleteValue)}
             />
           </div>
         </form>
