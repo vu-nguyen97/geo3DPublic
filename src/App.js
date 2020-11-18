@@ -14,6 +14,7 @@ import { MDBBtn, MDBIcon } from 'mdbreact'
 
 import CustomModal from './Modal'
 import SearchInput from './SearchLocationInput'
+import Autocomplete from './Autocomplete'
 import MapModal from './MapModal'
 import markerIcon from './images/marker.svg'
 import specialMarkerIcon from './images/special-marker.svg'
@@ -202,6 +203,13 @@ const levels = [
   },
 ]
 
+const topCountries = [
+  'Vietnam',
+  'United State'
+]
+
+const listOfCountries = countries.map(country => country.name)
+
 let citiesArr = countries.map(country => country.cities)
 let cities = [].concat.apply([], citiesArr)
 
@@ -220,7 +228,6 @@ class App extends PureComponent {
       userLocation: null,
       
       entity: null,
-      displayLevel: 'city',
       activedCity: null,
       showCities: {
         // fix me
@@ -229,6 +236,13 @@ class App extends PureComponent {
       },
       showCityEntities: true,
       showProjectEntities: false,
+      displayLevel: 'city',
+      listOfCities: [],
+      filters: {
+        country: null,
+        state: null,
+        city: null
+      }
     }
   }
   componentDidMount() {
@@ -418,6 +432,34 @@ class App extends PureComponent {
     })
   }
 
+  onChangeFilter = (name, value) => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        [name]: value
+      }
+    })
+    console.log(this.state.filters)
+  }
+
+  handleBlur = () => {
+  }
+
+  handleKeyDown = (event, name, value) => {
+    if (event.keyCode == 13) {
+      console.log(name, value)
+      this.handleFilter(name, value)
+    }
+  }
+
+  handleFilter = (name, value) => {
+    if (name == 'country') {
+      let activedCountry = countries.find(countryObj => countryObj.name = value)
+      const listOfCities = activedCountry.cities.map(city => city.name)
+      this.setState({ listOfCities })
+    }
+  }
+
   render() {
     const { 
       displayLevel,
@@ -425,9 +467,17 @@ class App extends PureComponent {
       userLocation,
       showCities,
       showCityEntities,
-      showProjectEntities 
+      showProjectEntities,
+      filters,
+      listOfCities
     } = this.state
+    const {
+      country,
+      state,
+      city
+    } = filters
     let projectsData = []
+
     if (activedCity) {
       const activedCityId = activedCity.id;
       projectsData = entities.filter(entity => entity.city_id == activedCityId)
@@ -440,6 +490,8 @@ class App extends PureComponent {
     } else {
       entitiesRender = this.generateEntities(entities)
     }
+
+    // console.log('listOfCities', listOfCities)
 
     return (
       <div>
@@ -454,16 +506,6 @@ class App extends PureComponent {
             <MDBBtn color="amber lighten-1" className="search-btn">
               <span className="text">Search</span>
             </MDBBtn>
-            
-            {/* 
-            <InputGroup className="mb-2">
-              <FormControl id="inlineFormInputGroup" placeholder="Username" />
-              <InputGroup.Prepend className="search-btn">
-                <Button className="search-btn">
-                  <span className="text">Search</span>
-                </Button>
-              </InputGroup.Prepend>
-            </InputGroup> */}
 
             <MDBBtn rounded color="indigo darken-1" className="find-location" size="sm"
               onClick={() => {
@@ -478,36 +520,70 @@ class App extends PureComponent {
           </div>
           {
             displayLevel == 'city' &&
-            <div className="d-flex group-container">
+            <div className="autocomplete-comp">
               {
-                countries.map(country => {
-                  const { cities } = country
-                  const isShowCities = showCities[country.id]
-                  return (
-                    <ListGroup key={country.id}>
-                      <ListGroup.Item className="country-name"
-                        onClick={() => this.handleShowCities(country.id)}
-                      >
-                        <span>{country.name}</span>
-                        <span>
-                          {
-                            isShowCities ? <i className="fas fa-sort-up"/> : <i className="fas fa-sort-down"/>
-                          }
-                        </span>
-                      </ListGroup.Item>
-                      {
-                        isShowCities &&
-                        cities.map((city, index) =>
-                          <ListGroup.Item action onClick={() => this.onClickPosition(city)} key={index}>
-                            {city.name}
-                          </ListGroup.Item>
-                        )
-                      }
-                    </ListGroup>
-                  )
-                })
+                topCountries.map((country, index) =>
+                  <button type="button" className="country-btn" key={index}>{country}</button>
+                )
               }
+              <Autocomplete
+                className="margin-top"
+                id="country"
+                data={listOfCountries}
+                placeholder="Enter country name..."
+                onBlur={this.handleBlur}
+                onKeyDown={this.handleKeyDown}
+              />
+              {/* {
+                (!country || (country && country.name == 'United State')) &&
+                <Autocomplete
+                  className="margin-top"
+                  id="state"
+                  data={statesArr}
+                  placeholder="Enter state name..."
+                  onBlur={this.handleBlur}
+                  onKeyDown={this.handleKeyDown}
+                />
+              } */}
+              <Autocomplete
+                className="margin-top"
+                id="city"
+                data={listOfCities}
+                placeholder="Enter city name..."
+                onBlur={this.handleBlur}
+                onKeyDown={this.handleKeyDown}
+              />
             </div>
+            // <div className="d-flex group-container">
+            //   {
+            //     countries.map(country => {
+            //       const { cities } = country
+            //       const isShowCities = showCities[country.id]
+            //       return (
+            //         <ListGroup key={country.id}>
+            //           <ListGroup.Item className="country-name"
+            //             onClick={() => this.handleShowCities(country.id)}
+            //           >
+            //             <span>{country.name}</span>
+            //             <span>
+            //               {
+            //                 isShowCities ? <i className="fas fa-sort-up"/> : <i className="fas fa-sort-down"/>
+            //               }
+            //             </span>
+            //           </ListGroup.Item>
+            //           {
+            //             isShowCities &&
+            //             cities.map((city, index) =>
+            //               <ListGroup.Item action onClick={() => this.onClickPosition(city)} key={index}>
+            //                 {city.name}
+            //               </ListGroup.Item>
+            //             )
+            //           }
+            //         </ListGroup>
+            //       )
+            //     })
+            //   }
+            // </div>
           }
           {
             displayLevel == 'project' &&
