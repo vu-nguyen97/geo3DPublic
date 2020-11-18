@@ -775,7 +775,7 @@ class MapModal extends PureComponent {
                   Ask a question
                 </a>
                 <a className="answer" href="/#">
-                  Answer  by <span class="answer-value">GIA</span>
+                  Answer  by <span className="answer-value">GIA</span>
                   <svg data-testid="chevron-down" className="chevron-down" viewBox="0 0 512 512">
                     <path d="M70 128l-27 32 215 224 211-224-27-32-184 196z">
                     </path>
@@ -812,7 +812,7 @@ class MapModal extends PureComponent {
                     <input className="form-control mr-sm-2" type="text" placeholder="Phone"/>
                  </div>   
                  <div className="input-item textarea-item">
-                   <textarea className="content form-control">I am interested in 201 Harrison St Apt 925</textarea>
+                  <textarea readOnly className="content form-control" value="I am interested in 201 Harrison St Apt 925" />
                   </div>
                    <div className="input-item checkbox-item">
                        <input type="checkbox" className="mr-sm-2"/>

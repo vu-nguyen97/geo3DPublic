@@ -372,7 +372,6 @@ class App extends PureComponent {
 
   generateEntities(data, isCityView = false) {
     return data.map((item, index) => {
-      console.log(item)
       let billboard
       if (!item.image) {
         billboard = { image: markerIcon }
