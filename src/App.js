@@ -227,7 +227,7 @@ class App extends PureComponent {
         0: true,
         1: true
       },
-      showCityEntities: false,
+      showCityEntities: true,
       showProjectEntities: false,
     }
   }
@@ -353,7 +353,7 @@ class App extends PureComponent {
 
   onClickEntity = (entity, isCityView = false) => {
     if (isCityView) {
-      this.flyTo(entity.lat, entity.lng)
+      this.onClickPosition(entity)
       return
     }
     this.handleShow(entity)
