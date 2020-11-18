@@ -165,7 +165,7 @@ const countries = [
         id: 5,
         name: 'California',
         lat: 41.85214488646792,
-        lng: -87.95161731336496 ,
+        lng: -87.95161731336496,
       },
       {
         id: 6,
@@ -246,9 +246,12 @@ class App extends PureComponent {
     this.viewer.camera.changed.addEventListener(() => this.onZoom());
   }
 
+  componentWillUnmount() {
+    this.viewer.camera.changed.removeEventListener(() => this.onZoom());
+  }
+
   onZoom = () => {
     const zoomHeight = this.viewer.camera.positionCartographic.height
-    console.log('zoomHeight', zoomHeight)
     if (zoomHeight <= maxHeightShowCity && zoomHeight > maxHeightShowProject) {
       this.setState({
         showCityEntities: true,
@@ -347,8 +350,9 @@ class App extends PureComponent {
     })
   }
 
-  onClickEntity = (entity, needCallback = true) => {
-    if (!needCallback) {
+  onClickEntity = (entity, isCityView = false) => {
+    if (isCityView) {
+      this.flyTo(entity.lat, entity.lng)
       return
     }
     this.handleShow(entity)
@@ -366,8 +370,7 @@ class App extends PureComponent {
     })
   }
 
-  generateEntities(data, needCallback = true) {
-    console.log('data', data)
+  generateEntities(data, isCityView = false) {
     return data.map((item, index) => {
       console.log(item)
       let billboard
@@ -381,8 +384,8 @@ class App extends PureComponent {
           position={this.parsePostition(item.lat, item.lng)}
           billboard={billboard}
           name={item.name}
-          key={index}
-          onClick={() => this.onClickEntity(item, needCallback)}
+          key={item.id}
+          onClick={() => this.onClickEntity(item, isCityView)}
         >
         </Entity>
       )
@@ -407,7 +410,7 @@ class App extends PureComponent {
     let entitiesRender = null
 
     if (showCities && !showProjectEntities) {
-      entitiesRender = this.generateEntities(cities, false)
+      entitiesRender = this.generateEntities(cities, true)
     } else {
       entitiesRender = this.generateEntities(entities)
     }
