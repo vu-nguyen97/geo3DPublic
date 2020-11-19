@@ -275,11 +275,10 @@ class MapModal extends PureComponent {
       // console.log('isShowSearchAreaBtn', searchedCoordinates, coordinatesOfMapCenter)
       
       setTimeout(() => {
-        // console.log('activedType', activedType)
         if (activedType && searchedCoordinates !== coordinatesOfMapCenter) {
-          searchAreaBtn.style.display = 'block'
+          searchAreaBtn?.style && (searchAreaBtn.style.display = 'block')
         } else {
-          searchAreaBtn.style.display = 'none'
+          searchAreaBtn?.style && (searchAreaBtn.style.display = 'none')
         }
         
         var bounds = map.getBounds();

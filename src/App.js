@@ -40,7 +40,7 @@ const entities = [
     city_id: 0,
     name: 'Ho Hoan Kiem',
     lat: 21.02238734675524,
-    lng: 105.8548718197642 ,
+    lng: 105.8548718197642,
   },
   {
     id: 2,
@@ -88,7 +88,7 @@ const entities = [
   // new data of US
   {
     id: 13,
-    state_id: 0,
+    state_id: 4,
     city_id: 1000,
     title: 'Houston, Texas',
     name: 'The Ivy at Clear Creek',
@@ -98,7 +98,7 @@ const entities = [
   },
   {
     id: 132,
-    state_id: 0,
+    state_id: 4,
     city_id: 1000,
     title: 'Houston, Texas',
     name: 'Wimbledon Apartment Homes',
@@ -108,7 +108,7 @@ const entities = [
   },
   {
     id: 133,
-    state_id: 0,
+    state_id: 4,
     city_id: 1000,
     title: 'Houston, Texas',
     name: 'The Lakes Of 610',
@@ -118,8 +118,8 @@ const entities = [
   },
   {
     id: 14,
-    state_id: 0,
-    city_id: 1001,
+    state_id: 5,
+    city_id: 1002,
     title: 'Los Angeles, Califorina',
     name: 'EB5: Downtown Los Angeles Marriott Hotel',
     description: 'Los Angeles là thành phố lớn nhất tiểu bang California, lớn nhất miền tây nước Mỹ, là thành phố lớn thứ 2 Hoa Kỳ và là kinh đô ánh sáng với thắng cảnh đẹp, thời tiết mát mẻ, Los Angeles không hổ danh là điểm du lịch nổi tiếng thế giới.',
@@ -128,8 +128,8 @@ const entities = [
   },
   {
     id: 142,
-    state_id: 0,
-    city_id: 1001,
+    state_id: 5,
+    city_id: 1002,
     title: 'Los Angeles, Califorina',
     name: 'Hotel RHF1 - Hollywood, Los Angeles',
     description: 'Sự kết hợp của hai “gã khổng lồ” dày dạn kinh nghiệm trong ngành bất động sản Mỹ – Colony Capital Relevant Group. Relevant Group và Colony Capital có đội ngũ cố vấn tốt nhất với lịch sử hoạt động thành công trong lĩnh vực bất động sản, có tầm nhìn và am hiểu thị trường Hoa Kỳ cực kỳ sâu sắc.',
@@ -138,8 +138,8 @@ const entities = [
   },
   {
     id: 15,
-    state_id: 1,
-    city_id: 1002,
+    state_id: 4,
+    city_id: 1001,
     title: 'Dallas, Texas',
     name: 'Valley Oaks Apartment Homes',
     description: 'Khu căn hộ Valley Oaks, một khu căn hộ phong cách sân vườn với 322 căn hộ tọa lạc tại thành phố Hurst, Texas. Được xây dựng từ năm 1979, khu căn hộ rất tiềm năng để phát triển, khi mà đa số các căn hộ vẫn còn giữ nguyên nội thất ban đầu.',
@@ -148,8 +148,8 @@ const entities = [
   },
   {
     id: 152,
-    state_id: 1,
-    city_id: 1002,
+    state_id: 4,
+    city_id: 1001,
     title: 'Dallas, Texas',
     name: 'Bel Air Las Colinas',
     description: 'Western Wealth Capital và USHome tự hào mang đến cho các nhà đầu tư cơ hội đầu tư vào một dự án lợi nhuận cao tại một trong những thị trường BĐS phát triển mạnh nhất của Hoa Kỳ, khu vực Dallas, Texas. Công ty hợp danh hữu hạn dự định đầu tư vào Khu căn hộ Bel Air Las Colinas, một cộng đồng cư dân với 525 căn hộ cao cấp tọa lạc tại Las Colinas, Irving, Texas.',
@@ -160,7 +160,7 @@ const entities = [
   {
     // data fake
     id: 16,
-    state_id: 1,
+    state_id: 5,
     city_id: 1003,
     title: 'San Francisco, Califorina',
     name: 'Hotel RHF1 - Hollywood, San Francisco, Califorina',
@@ -170,7 +170,7 @@ const entities = [
   },
   {
     id: 17,
-    state_id: 2,
+    state_id: 6,
     city_id: 1004,
     title: 'New York City, New York',
     name: 'EB5: NYC Lightstone Towers',
@@ -180,7 +180,7 @@ const entities = [
   },
   {
     id: 172,
-    state_id: 2,
+    state_id: 6,
     city_id: 1004,
     title: 'New York City, New York',
     name: 'EB5: Manhattan Tower New York City, United States',
@@ -190,7 +190,7 @@ const entities = [
   },
   {
     id: 173,
-    state_id: 2,
+    state_id: 6,
     city_id: 1004,
     title: 'New York City, New York',
     name: 'EB5: Sister City Hotel, ACE Hotel Group',
@@ -200,7 +200,7 @@ const entities = [
   },
   {
     id: 174,
-    state_id: 2,
+    state_id: 6,
     city_id: 1004,
     title: 'New York City, New York',
     name: 'EB5: Empire State Marriott Hotel - New York',
@@ -210,7 +210,7 @@ const entities = [
   },
   {
     id: 18,
-    state_id: 3,
+    state_id: 7,
     city_id: 1005,
     title: 'Phoenix, Arizona',
     name: 'Desert Willow Apartment Homes',
@@ -220,7 +220,7 @@ const entities = [
   },
   {
     id: 182,
-    state_id: 3,
+    state_id: 7,
     city_id: 1005,
     title: 'Phoenix, Arizona',
     name: 'Cedar Meadows Apartment Homes',
@@ -230,7 +230,7 @@ const entities = [
   },
   {
     id: 183,
-    state_id: 3,
+    state_id: 7,
     city_id: 1005,
     title: 'Phoenix, Arizona',
     name: 'Villa Tree Apartment Homes',
@@ -282,7 +282,7 @@ const countries = [
     lng: -95.37552950274825,
     states: [
       {
-        id: 0,
+        id: 4,
         name: 'Texas',
         lat: 29.75548920677555,
         lng: -95.37552950274825,
@@ -302,7 +302,7 @@ const countries = [
         ]
       },
       {
-        id: 1,
+        id: 5,
         name: 'Califorina',
         lat: 34.052133818696994,
         lng: -118.26664374625872,
@@ -322,7 +322,7 @@ const countries = [
         ]
       },
       {
-        id: 2,
+        id: 6,
         name: 'New York',
         lat: 40.68435860063441,
         lng: -73.96834164426204,
@@ -336,7 +336,7 @@ const countries = [
         ]
       },
       {
-        id: 3,
+        id: 7,
         name: 'Arizona',
         lat: 33.442891424622964,
         lng: -112.07411045441694,
@@ -348,36 +348,11 @@ const countries = [
             lng: -112.07411045441694,
           }
         ]
-      },
-    ],
-    cities: [
-      {
-        id: 4,
-        name: 'Texas',
-        lat: 29.484248117725974,
-        lng: -94.9951742379726,
-      },
-      {
-        id: 5,
-        name: 'California',
-        lat: 35.12471886317634,
-        lng: -117.98415348906342,
-      },
-      {
-        id: 6,
-        name: 'Chicago',
-        lat: 41.87620677947113,
-        lng: -87.62965377343647,
-      },
-      {
-        id: 7,
-        name: 'Los Angeles',
-        lat: 34.044400781058066,
-        lng: -118.24144442703695,
-      },
+      }
     ]
   }
 ]
+
 
 const levels = [
   {
@@ -403,14 +378,17 @@ const topCountries = [
   'United State'
 ]
 
-const listOfCountries = countries.map(country => country.name)
+let citiesVN = countries[0].cities
+let stateUS = countries[1].states
 
-let citiesArr = countries.map(country => country.cities)
-let cities = [].concat.apply([], citiesArr)
+let area = citiesVN.concat(stateUS)
 
 const maxHeightShowCountry = 0
 const maxHeightShowCity = 20000000
-const maxHeightShowProject = 1700000
+const minHeightShowState = 2000000
+const maxHeightShowProject = 1750000
+
+const stateViewHeight = 1750000
 
 class App extends PureComponent {
   viewer
@@ -421,7 +399,7 @@ class App extends PureComponent {
       name: '',
       showMap: false,
       userLocation: null,
-      
+
       entity: null,
       activedCity: null,
       showCities: {
@@ -430,6 +408,7 @@ class App extends PureComponent {
         1: true
       },
       showCityEntities: true,
+      showStateEntities: true,
       showProjectEntities: false,
       displayLevel: 'city',
       listOfCities: [],
@@ -443,7 +422,7 @@ class App extends PureComponent {
     }
   }
   componentDidMount() {
-    const API_KEY='AIzaSyBgo82RLpZphiLZPf6dma2F82UQWQinzVc'
+    const API_KEY = 'AIzaSyBgo82RLpZphiLZPf6dma2F82UQWQinzVc'
     this.loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`
     )
@@ -455,51 +434,36 @@ class App extends PureComponent {
     this.viewer.scene.screenSpaceCameraController._minimumZoomRate = 30000;
     this.viewer.screenSpaceEventHandler.removeInputAction(ScreenSpaceEventType.LEFT_DOUBLE_CLICK)
 
-    this.viewer.camera.changed.addEventListener(() => this.onZoom());
+    this.viewer.camera.moveEnd.addEventListener(() => this.onMoveEnd());
+    this.viewer.camera.changed.addEventListener(() => this.onViewChanged());
   }
 
   componentWillUnmount() {
-    this.viewer.camera.changed.removeEventListener(() => this.onZoom());
+    this.viewer.camera.moveEnd.removeEventListener(() => this.onMoveEnd());
+    this.viewer.camera.changed.removeEventListener(() => this.onViewChanged());
   }
 
-  onZoom = () => {
+  onMoveEnd = () => {
     const zoomHeight = this.viewer.camera.positionCartographic.height
-    if (zoomHeight <= maxHeightShowCity && zoomHeight > maxHeightShowProject) {
-      this.viewer.dataSources.removeAll()
+    if (zoomHeight <= minHeightShowState) {
+      this.addAreaBorder()
+    }
+  }
+
+  onViewChanged = () => {
+    const zoomHeight = this.viewer.camera.positionCartographic.height
+    if (zoomHeight > minHeightShowState) {
+      this.viewer.dataSources.length > 0 && this.viewer.dataSources.removeAll()
       this.setState({
         showCityEntities: true,
+        showStateEntities: true,
         showProjectEntities: false
       })
-    }
-    if (zoomHeight <= maxHeightShowProject) {
-      let cityBorder = null
-      if (this.state.activedCity?.name === 'Da Nang') {
-        cityBorder = GeoJsonDataSource.load('./danang.geojson')
-      }
-      if (this.state.activedCity?.name === 'Hanoi') {
-        cityBorder = GeoJsonDataSource.load('./hanoi.geojson')
-      }
-      if (this.state.activedCity?.name === 'Ho Chi Minh') {
-        cityBorder = GeoJsonDataSource.load('./hcm.geojson')
-      }
-      if (this.state.activedCity?.name === 'Texas') {
-        cityBorder = GeoJsonDataSource.load('./texas.geojson')
-      }
-      if (this.state.activedCity?.name === 'California') {
-        cityBorder = GeoJsonDataSource.load('./cali.geojson')
-      }
-      if (this.state.activedCity?.name === 'Los Angeles') {
-        cityBorder = GeoJsonDataSource.load('./la.geojson')
-      }
-      if (this.state.activedCity?.name === 'Nha Trang') {
-        cityBorder = GeoJsonDataSource.load('./nhatrang.geojson')
-      }
-      
-      cityBorder && this.viewer.dataSources.add(cityBorder)
-
+    } else {
       this.setState({
         showProjectEntities: true,
-        showCityEntities: false
+        showCityEntities: false,
+        showStateEntities: false
       })
     }
   }
@@ -507,7 +471,7 @@ class App extends PureComponent {
   loadScript = (url) => {
     let script = document.createElement("script");
     script.type = "text/javascript";
-  
+
     if (script.readyState) {
       script.onreadystatechange = function () {
         if (script.readyState === "loaded" || script.readyState === "complete") {
@@ -520,7 +484,7 @@ class App extends PureComponent {
         this.searchInput.handleScriptLoad()
       }
     }
-  
+
     script.src = url;
     document.getElementsByTagName("head")[0].appendChild(script);
   }
@@ -544,14 +508,52 @@ class App extends PureComponent {
     return Cartesian3.fromDegrees(long, lat, height)
   }
 
-  onClickPosition = (city) => {
+  onClickPosition = (area) => {
+    let zoomHeight = 90000
+    if (area.cities) {
+      zoomHeight = 1650000
+    }
     this.viewer.camera.flyTo({
-      destination: this.parsePostition(city.lat, city.lng, 90000)
+      destination: this.parsePostition(area.lat, area.lng, zoomHeight)
     })
+
     this.setState({
       displayLevel: 'project',
-      activedCity: city
-   })
+      activedCity: area
+    })
+  }
+
+  addAreaBorder = () => {
+    let cityBorder = null
+    if (this.state.activedCity?.name === 'Hanoi') {
+      cityBorder = GeoJsonDataSource.load('./hanoi.geojson')
+    }
+    if (this.state.activedCity?.name === 'Da Nang') {
+      cityBorder = GeoJsonDataSource.load('./danang.geojson')
+    }
+    if (this.state.activedCity?.name === 'Nha Trang') {
+      cityBorder = GeoJsonDataSource.load('./nhatrang.geojson')
+    }
+    if (this.state.activedCity?.name === 'Ho Chi Minh') {
+      cityBorder = GeoJsonDataSource.load('./hcm.geojson')
+    }
+    if (this.state.activedCity?.name === 'Texas') {
+      cityBorder = GeoJsonDataSource.load('./texas.geojson')
+    }
+    if (this.state.activedCity?.name === 'Califorina') {
+      cityBorder = GeoJsonDataSource.load('./cali.geojson')
+    }
+    if (this.state.activedCity?.name === 'Los Angeles') {
+      cityBorder = GeoJsonDataSource.load('./la.geojson')
+    }
+    if (this.state.activedCity?.name === 'New York') {
+      cityBorder = GeoJsonDataSource.load('./ny.geojson')
+    }
+    if (this.state.activedCity?.name === 'Arizona') {
+      cityBorder = GeoJsonDataSource.load('./az.geojson')
+    }
+
+    cityBorder && this.viewer.dataSources.add(cityBorder)
   }
 
   handleShowCities = (country_id) => {
@@ -559,7 +561,8 @@ class App extends PureComponent {
       showCities: {
         ...this.state.showCities,
         [country_id]: !this.state.showCities[country_id]
-      }}
+      }
+    }
     )
   }
 
@@ -597,7 +600,7 @@ class App extends PureComponent {
   }
 
   onInputChange = () => {
-    console.log('Test')
+    // console.log('Test')
   }
 
   flyTo = (lat, long, height = 70000) => {
@@ -619,7 +622,7 @@ class App extends PureComponent {
           position={this.parsePostition(item.lat, item.lng)}
           billboard={billboard}
           name={item.name}
-          key={item.id}
+          key={index}
           onClick={() => this.onClickEntity(item, isCityView)}
         >
         </Entity>
@@ -673,9 +676,10 @@ class App extends PureComponent {
 
       const activedState = activedCountry.states.find(stateObj => stateObj.name == state)
       if (!activedState) {
-        if (isFly) {
-          return this.flyTo(viewerObj.lat, viewerObj.lng, viewerObj.height)
-        }
+        return
+        // if (isFly) {
+        //   return this.flyTo(viewerObj.lat, viewerObj.lng, viewerObj.height)
+        // }
       } else {
         const listOfCities = activedState.cities.map(city => city.name)
         console.log('US has city:', listOfCities)
@@ -685,17 +689,18 @@ class App extends PureComponent {
 
         if (city) {
           const activedCity = activedState.cities.find(cityObj => cityObj.name == city)
+          console.log('>>>>>', activedCity)
           if (activedCity) {
             viewerObj = Object.assign({}, {
               lat: activedCity.lat,
               lng: activedCity.lng,
-              height: 1000000
+              height: 90000
+            })
+            this.setState({
+              displayLevel: 'project',
+              activedCity
             })
           }
-          this.setState({
-            displayLevel: 'project',
-            activedCity
-          })
         }
     
         if (isFly) {
@@ -717,7 +722,7 @@ class App extends PureComponent {
         viewerObj = Object.assign({}, {
           lat: activedCity.lat,
           lng: activedCity.lng,
-          height: 1000000
+          height: 90000
         })
       }
       this.setState({
@@ -734,7 +739,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const { 
+    const {
       displayLevel,
       activedCity,
       userLocation,
@@ -743,7 +748,9 @@ class App extends PureComponent {
       showProjectEntities,
       listOfCities,
       listOfStates,
-      isShowStateAutocomplete
+      isShowStateAutocomplete,
+      showStateEntities,
+      filters
     } = this.state
     let projectsData = []
 
@@ -754,15 +761,15 @@ class App extends PureComponent {
 
     let entitiesRender = null
 
-    if (showCityEntities && !showProjectEntities) {
-      entitiesRender = this.generateEntities(cities, true)
+    if (showStateEntities && !showProjectEntities) {
+      entitiesRender = this.generateEntities(area, true)
     } else {
       entitiesRender = this.generateEntities(entities)
     }
 
     return (
       <div>
-        <Viewer ref={e => { this.viewer = e && e.cesiumElement; }} 
+        <Viewer ref={e => { this.viewer = e && e.cesiumElement; }}
           full
           selectionIndicator={false}
         >
@@ -860,7 +867,7 @@ class App extends PureComponent {
                       this.viewer.camera.flyTo({
                         destination: this.parsePostition(activedCity.lat, activedCity.lng, 10000000)
                       })
-                      this.setState({ displayLevel: 'city', activedCity: null})
+                      this.setState({ displayLevel: 'city', activedCity: null })
                     }}
                   />
                 </div>
@@ -882,8 +889,8 @@ class App extends PureComponent {
                         <div className="txt">Home for Sale</div>
                         <div className="price">$105,000</div>
                         <a href="#" className="favo-icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" data-testid="complex-svg-heart" width="40" height="40" aria-label="heart" tabIndex="-1" 
-                          className="sc-prOVx nbRcd"><path fill="rgba(0,0,0,0.4)" stroke="#fff" strokeWidth="3" data-testid="complex-svg-heart-path" d="M20 8.3c4.9-8 18.5-5.9 18.5 5l-.1 1.9c-.8 4.6-4 9.3-8.9 14a66.6 66.6 0 0 1-8.7 7l-.7.6-.8-.5a27.6 27.6 0 0 1-2.8-1.7c-2-1.4-4-3-6-4.7-5.6-5-9-10.3-9-15.8A10 10 0 0 1 20 8.3z"></path></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" data-testid="complex-svg-heart" width="40" height="40" aria-label="heart" tabIndex="-1"
+                            className="sc-prOVx nbRcd"><path fill="rgba(0,0,0,0.4)" stroke="#fff" strokeWidth="3" data-testid="complex-svg-heart-path" d="M20 8.3c4.9-8 18.5-5.9 18.5 5l-.1 1.9c-.8 4.6-4 9.3-8.9 14a66.6 66.6 0 0 1-8.7 7l-.7.6-.8-.5a27.6 27.6 0 0 1-2.8-1.7c-2-1.4-4-3-6-4.7-5.6-5-9-10.3-9-15.8A10 10 0 0 1 20 8.3z"></path></svg>
                         </a>
                       </div>
                       <div className="desc">
@@ -893,14 +900,14 @@ class App extends PureComponent {
                           <span><strong>1,900</strong>sqft lot</span>
                         </div>
                         <p>
-                        <span><strong>{project.name}</strong></span>
+                          <span><strong>{project.name}</strong></span>
                         </p>
                       </div>
                     </div>
                   )
                 }
               </div>
-            </div> 
+            </div>
           }
           {entitiesRender}
         </Viewer>
@@ -910,10 +917,10 @@ class App extends PureComponent {
           show={this.state.show}
           handleClose={this.handleClose}
           entity={this.state.entity}
-          handleShowMap = {this.handleShowMap}
+          handleShowMap={this.handleShowMap}
         >
         </CustomModal>
-        <MapModal 
+        <MapModal
           onRef={ref => { this.mapModal = ref }}
           showMap={this.state.showMap}
           handleCloseMap={this.handleCloseMap}
