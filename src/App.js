@@ -14,7 +14,7 @@ import { MDBBtn, MDBIcon } from 'mdbreact'
 
 import CustomModal from './Modal'
 import SearchInput from './SearchLocationInput'
-import Autocomplete from './Autocomplete'
+import Autosuggest from './Autosuggest'
 import MapModal from './MapModal'
 import markerIcon from './images/marker.svg'
 import specialMarkerIcon from './images/special-marker.svg'
@@ -240,10 +240,14 @@ const entities = [
   },
 ]
 
+const US = 'United States of America';
+
 const countries = [
   {
     id: 0,
-    name: 'Viet nam',
+    name: 'Vietnam',
+    lat: 21.0245,
+    lng: 105.84117,
     cities: [
       {
         id: 0,
@@ -273,7 +277,9 @@ const countries = [
   },
   {
     id: 1,
-    name: 'United State',
+    name: US,
+    lat: 29.75548920677555,
+    lng: -95.37552950274825,
     states: [
       {
         id: 0,
@@ -428,6 +434,7 @@ class App extends PureComponent {
       displayLevel: 'city',
       listOfCities: [],
       listOfStates: [],
+      isShowStateAutocomplete: true,
       filters: {
         country: null,
         state: null,
@@ -593,11 +600,9 @@ class App extends PureComponent {
     console.log('Test')
   }
 
-  flyTo = (lat, long) => {
-    console.log('lat', lat)
-    console.log('lng', long)
+  flyTo = (lat, long, height = 70000) => {
     this.viewer.camera.flyTo({
-      destination: this.parsePostition(lat, long, 70000)
+      destination: this.parsePostition(lat, long, height)
     })
   }
 
@@ -622,56 +627,108 @@ class App extends PureComponent {
     })
   }
 
-  handleBlur = (name, value) => {
-    console.log('onBlur')
-    this.handleFilter(name, value)
+  handleBlur = () => {
+    this.handleFilter()
   }
 
-  handleKeyDown = (event, name, value) => {
+  handleKeyDown = (event) => {
     if (event.keyCode == 13) {
-      console.log(name, value)
-      this.handleFilter(name, value)
+      this.handleFilter(true)
     }
   }
 
-  handleFilter = (name, value) => {
+  updateFilters = (name, value) => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        [name]: value
+      }
+    })
+  }
+
+  handleFilter = (isFly = false) => {
     const { filters } = this.state
-    if (name == 'country') {
-      let activedCountry = countries.find(countryObj => countryObj.name == value)
-      if (!activedCountry) {
+    const { country, state, city } = filters
+
+    let viewerObj = null
+    let activedCountry = countries.find(countryObj => countryObj.name == country)
+    if (!activedCountry) {
+      return
+    }
+
+    // has country
+    viewerObj = Object.assign({}, {
+      lat: activedCountry.lat,
+      lng: activedCountry.lng,
+      height: 8000000
+    })
+
+    if (country == US) {
+      const listOfStates = activedCountry.states.map(state => state.name)
+      console.log('US has state:', listOfStates)
+      this.setState({
+        listOfStates,
+        isShowStateAutocomplete: true
+      })
+
+      const activedState = activedCountry.states.find(stateObj => stateObj.name == state)
+      if (!activedState) {
+        if (isFly) {
+          return this.flyTo(viewerObj.lat, viewerObj.lng, viewerObj.height)
+        }
+      } else {
+        const listOfCities = activedState.cities.map(city => city.name)
+        console.log('US has city:', listOfCities)
+        this.setState({
+          listOfCities
+        })
+
+        if (city) {
+          const activedCity = activedState.cities.find(cityObj => cityObj.name == city)
+          if (activedCity) {
+            viewerObj = Object.assign({}, {
+              lat: activedCity.lat,
+              lng: activedCity.lng,
+              height: 1000000
+            })
+          }
+          this.setState({
+            displayLevel: 'project',
+            activedCity
+          })
+        }
+    
+        if (isFly) {
+          this.flyTo(viewerObj.lat, viewerObj.lng, viewerObj.height)
+        }
         return
       }
-      const firstCity = activedCountry.cities[0]
-      this.viewer.camera.flyTo({
-        destination: this.parsePostition(firstCity.lat, firstCity.lng, 3500000)
-      })
+    }
 
-      // if (value == 'United States') {}
-      const listOfCities = activedCountry.cities.map(city => city.name)
-      return this.setState({
-        listOfCities,
-        filters: {
-          ...this.state.filters,
-          country: value
-        }
+    const listOfCities = activedCountry.cities.map(city => city.name)
+    this.setState({
+      listOfCities,
+      isShowStateAutocomplete: false
+    })
+
+    if (city) {
+      const activedCity = activedCountry.cities.find(cityObj => cityObj.name == city)
+      if (activedCity) {
+        viewerObj = Object.assign({}, {
+          lat: activedCity.lat,
+          lng: activedCity.lng,
+          height: 1000000
+        })
+      }
+      this.setState({
+        displayLevel: 'project',
+        activedCity
       })
     }
 
-    if (name == 'city') {
-      let activedCountry = countries.find(countryObj => countryObj.name == filters.country)
-      if (!activedCountry) {
-        console.log('no activedCountry')
-      }
-      const cityIndex = activedCountry.cities.findIndex(city => city.name == value)
-      const city = activedCountry.cities[cityIndex]
+    if (isFly) {
       this.viewer.camera.flyTo({
-        destination: this.parsePostition(city.lat, city.lng, 90000)
-      })
-      this.setState({
-        filters: {
-          ...this.state.filters,
-          [name]: value
-        }
+        destination: this.parsePostition(viewerObj.lat, viewerObj.lng, viewerObj.height)
       })
     }
   }
@@ -684,15 +741,10 @@ class App extends PureComponent {
       showCities,
       showCityEntities,
       showProjectEntities,
-      filters,
       listOfCities,
-      listOfStates
+      listOfStates,
+      isShowStateAutocomplete
     } = this.state
-    const {
-      country,
-      state,
-      city
-    } = filters
     let projectsData = []
 
     if (activedCity) {
@@ -741,32 +793,30 @@ class App extends PureComponent {
                   <button type="button" className="country-btn" key={index}>{country}</button>
                 )
               }
-              <Autocomplete
-                className="margin-top"
-                id="country"
-                data={listOfCountries}
-                placeholder="Enter country name..."
+              <Autosuggest
+                type='country'
+                placeholder='Type a country...'
                 onBlur={this.handleBlur}
                 onKeyDown={this.handleKeyDown}
-              />
-              {/* {
-                (!country || (country && country.name == 'United State')) &&
-                <Autocomplete
-                  className="margin-top"
-                  id="state"
+                updateFilters={this.updateFilters}
+                />
+              {
+                isShowStateAutocomplete &&
+                <Autosuggest
+                  type='state'
+                  placeholder='Type a state...'
                   data={listOfStates}
-                  placeholder="Enter state name..."
                   onBlur={this.handleBlur}
                   onKeyDown={this.handleKeyDown}
+                  updateFilters={this.updateFilters}
                 />
-              } */}
-              <Autocomplete
-                className="margin-top"
-                id="city"
+              }
+              <Autosuggest
+                type='city'
                 data={listOfCities}
-                placeholder="Enter city name..."
                 onBlur={this.handleBlur}
                 onKeyDown={this.handleKeyDown}
+                updateFilters={this.updateFilters}
               />
             </div>
           }
