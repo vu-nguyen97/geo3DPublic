@@ -273,88 +273,6 @@ const countries = [
   {
     id: 1,
     name: 'United State',
-    cities: [
-      {
-        id: 4,
-        name: 'Texas',
-        lat: 29.484248117725974,
-        lng: -94.9951742379726,
-      },
-      {
-        id: 5,
-        name: 'California',
-        lat: 35.12471886317634,
-        lng: -117.98415348906342,
-      },
-      {
-        id: 6,
-        name: 'Chicago',
-        lat: 41.87620677947113,
-        lng: -87.62965377343647,
-      },
-      {
-        id: 7,
-        name: 'Los Angeles',
-        lat: 34.044400781058066,
-        lng: -118.24144442703695,
-      },
-    ]
-  }
-]
-
-const levels = [
-  {
-    id: 1,
-    name: 'country'
-  },
-  {
-    id: 2,
-    name: 'state'
-  },
-  {
-    id: 3,
-    name: 'city'
-  },
-  {
-    id: 4,
-    name: 'project'
-  },
-]
-
-const countries1 = [
-  {
-    id: 0,
-    name: 'Viet nam',
-    cities: [
-      {
-        id: 0,
-        name: 'Hanoi',
-        lat: 21.0245,
-        lng: 105.84117,
-      },
-      {
-        id: 1,
-        name: 'Da Nang',
-        lat: 16.06778,
-        lng: 108.22083,
-      },
-      {
-        id: 2,
-        name: 'Nha Trang',
-        lat: 12.24507,
-        lng: 109.19432,
-      },
-      {
-        id: 3,
-        name: 'Ho Chi Minh',
-        lat: 10.82302,
-        lng: 106.62965,
-      },
-    ]
-  },
-  {
-    id: 1,
-    name: 'United State',
     states: [
       {
         id: 4,
@@ -428,11 +346,30 @@ const countries1 = [
   }
 ]
 
-let citiesArr = countries.map(country => country.cities)
-let cities = [].concat.apply([], citiesArr)
 
-let citiesVN = countries1[0].cities
-let stateUS = countries1[1].states
+const levels = [
+  {
+    id: 1,
+    name: 'country'
+  },
+  {
+    id: 2,
+    name: 'state'
+  },
+  {
+    id: 3,
+    name: 'city'
+  },
+  {
+    id: 4,
+    name: 'project'
+  },
+]
+
+
+
+let citiesVN = countries[0].cities
+let stateUS = countries[1].states
 
 let area = citiesVN.concat(stateUS)
 console.log('area', area)
@@ -748,7 +685,7 @@ class App extends PureComponent {
             displayLevel == 'city' &&
             <div className="d-flex group-container">
               {
-                countries1.map(country => {
+                countries.map(country => {
                   const { cities, states } = country
                   console.log(cities, states)
                   const isShowCities = showCities[country.id]
