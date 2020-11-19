@@ -156,17 +156,17 @@ const entities = [
     lng: -96.9513246,
   },
 
-  {
-    // data fake
-    id: 16,
-    state_id: 1,
-    city_id: 5,
-    title: 'San Francisco, Califorina',
-    name: 'Hotel RHF1 - Hollywood, San Francisco, Califorina',
-    description: 'Sự kết hợp của hai “gã khổng lồ” dày dạn kinh nghiệm trong ngành bất động sản Mỹ – Colony Capital Relevant Group. Relevant Group và Colony Capital có đội ngũ cố vấn tốt nhất với lịch sử hoạt động thành công trong lĩnh vực bất động sản, có tầm nhìn và am hiểu thị trường Hoa Kỳ cực kỳ sâu sắc.',
-    lat: 37.767658634544645,
-    lng: -122.39755703551069,
-  },
+  // {
+  //   // data fake
+  //   id: 16,
+  //   state_id: 1,
+  //   city_id: 5,
+  //   title: 'San Francisco, Califorina',
+  //   name: 'Hotel RHF1 - Hollywood, San Francisco, Califorina',
+  //   description: 'Sự kết hợp của hai “gã khổng lồ” dày dạn kinh nghiệm trong ngành bất động sản Mỹ – Colony Capital Relevant Group. Relevant Group và Colony Capital có đội ngũ cố vấn tốt nhất với lịch sử hoạt động thành công trong lĩnh vực bất động sản, có tầm nhìn và am hiểu thị trường Hoa Kỳ cực kỳ sâu sắc.',
+  //   lat: 37.767658634544645,
+  //   lng: -122.39755703551069,
+  // },
   {
     id: 17,
     state_id: 2,
@@ -741,36 +741,42 @@ class App extends PureComponent {
               </div>
               <div className="wrapper">
                 {
-                  projectsData.map(project =>
-                    <div className="item-project" key={project.id}>
-                      <div className="inner"
-                        onClick={() => {
-                          this.setState({
-                            entity: project,
-                            showMap: true
-                          })
-                        }}
-                      >
-                        <div className="new">new</div>
-                        <div className="txt">Home for Sale</div>
-                        <div className="price">$105,000</div>
-                        <a href="#" className="favo-icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" data-testid="complex-svg-heart" width="40" height="40" aria-label="heart" tabIndex="-1"
-                            className="sc-prOVx nbRcd"><path fill="rgba(0,0,0,0.4)" stroke="#fff" strokeWidth="3" data-testid="complex-svg-heart-path" d="M20 8.3c4.9-8 18.5-5.9 18.5 5l-.1 1.9c-.8 4.6-4 9.3-8.9 14a66.6 66.6 0 0 1-8.7 7l-.7.6-.8-.5a27.6 27.6 0 0 1-2.8-1.7c-2-1.4-4-3-6-4.7-5.6-5-9-10.3-9-15.8A10 10 0 0 1 20 8.3z"></path></svg>
-                        </a>
-                      </div>
-                      <div className="desc">
-                        <div>
-                          <span><strong>3</strong>bed</span>
-                          <span><strong>3.5</strong>bath</span>
-                          <span><strong>1,900</strong>sqft lot</span>
+                  projectsData.map(project => {
+                    let classImg = 'inner '
+                    if (project.id >= 13) {
+                      classImg += `img-${project.id}`
+                    }
+                    return (
+                      <div className="item-project" key={project.id}>
+                        <div className={classImg}
+                          onClick={() => {
+                            this.setState({
+                              entity: project,
+                              showMap: true
+                            })
+                          }}
+                        >
+                          <div className="new">new</div>
+                          <div className="txt">Home for Sale</div>
+                          <div className="price">$105,000</div>
+                          <a href="#" className="favo-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" data-testid="complex-svg-heart" width="40" height="40" aria-label="heart" tabIndex="-1"
+                              className="sc-prOVx nbRcd"><path fill="rgba(0,0,0,0.4)" stroke="#fff" strokeWidth="3" data-testid="complex-svg-heart-path" d="M20 8.3c4.9-8 18.5-5.9 18.5 5l-.1 1.9c-.8 4.6-4 9.3-8.9 14a66.6 66.6 0 0 1-8.7 7l-.7.6-.8-.5a27.6 27.6 0 0 1-2.8-1.7c-2-1.4-4-3-6-4.7-5.6-5-9-10.3-9-15.8A10 10 0 0 1 20 8.3z"></path></svg>
+                          </a>
                         </div>
-                        <p>
-                          <span><strong>{project.name}</strong></span>
-                        </p>
+                        <div className="desc">
+                          <div>
+                            <span><strong>3</strong>bed</span>
+                            <span><strong>3.5</strong>bath</span>
+                            <span><strong>1,900</strong>sqft lot</span>
+                          </div>
+                          <p>
+                            <span><strong>{project.name}</strong></span>
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  )
+                    )
+                  })
                 }
               </div>
             </div>
