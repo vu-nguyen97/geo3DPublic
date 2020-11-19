@@ -14,6 +14,7 @@ import { MDBBtn, MDBIcon } from 'mdbreact'
 
 import CustomModal from './Modal'
 import SearchInput from './SearchLocationInput'
+import Autocomplete from './Autocomplete'
 import MapModal from './MapModal'
 import markerIcon from './images/marker.svg'
 import specialMarkerIcon from './images/special-marker.svg'
@@ -83,40 +84,90 @@ const entities = [
     lat: 21.02939214531629,
     lng: 105.83624913068846,
   },
+  // {
+  //   id: 8,
+  //   city_id: 4,
+  //   name: 'Texas building',
+  //   lat: 29.38903807067983,
+  //   lng: -94.91513500165428,
+  // },
+  // {
+  //   id: 9,
+  //   city_id: 5,
+  //   name: 'California building',
+  //   lat: 35.12471886317634,
+  //   lng: -117.98415348906342,
+  // },
+  // {
+  //   id: 10,
+  //   city_id: 6,
+  //   name: 'Chicago building',
+  //   lat: 41.84879726701267,
+  //   lng: -87.68257361576919,
+  // },
+  // {
+  //   id: 11,
+  //   city_id: 7,
+  //   name: 'Los Angeles building',
+  //   lat: 34.051519663913176,
+  //   lng: -118.24312176636627,
+  // },
+  // {
+  //   id: 12,
+  //   city_id: 4,
+  //   name: 'Texas building 2',
+  //   lat: 29.384248117725974,
+  //   lng: -94.90069379421364,
+  // },
+
+  // new data
   {
-    id: 8,
-    city_id: 4,
-    name: 'Texas building',
-    lat: 29.38903807067983,
-    lng: -94.91513500165428,
+    id: 13,
+    state_id: 0,
+    city_id: 1000,
+    name: 'Houston, Texas',
+    lat: 29.75548920677555,
+    lng: -95.37552950274825,
   },
   {
-    id: 9,
-    city_id: 5,
-    name: 'California building',
-    lat: 35.12471886317634,
-    lng: -117.98415348906342,
+    id: 14,
+    state_id: 0,
+    city_id: 1001,
+    name: 'Dallas, Texas',
+    lat: 32.776847367729644,
+    lng: -96.77747682036818,
   },
   {
-    id: 10,
-    city_id: 6,
-    name: 'Chicago building',
-    lat: 41.84879726701267,
-    lng: -87.68257361576919,
+    id: 15,
+    state_id: 1,
+    city_id: 1002,
+    name: 'Los Angeles, Califorina',
+    lat: 34.052133818696994,
+    lng: -118.26664374625872,
   },
   {
-    id: 11,
-    city_id: 7,
-    name: 'Los Angeles building',
-    lat: 34.051519663913176,
-    lng: -118.24312176636627,
+    id: 16,
+    state_id: 1,
+    city_id: 1003,
+    name: 'San Francisco, Califorina',
+    lat: 37.767658634544645,
+    lng: -122.39755703551069,
   },
   {
-    id: 12,
-    city_id: 4,
-    name: 'Texas building 2',
-    lat: 29.384248117725974,
-    lng: -94.90069379421364,
+    id: 17,
+    state_id: 2,
+    city_id: 1004,
+    name: 'New York City, New York',
+    lat: 40.68435860063441,
+    lng: -73.96834164426204,
+  },
+  {
+    id: 18,
+    state_id: 3,
+    city_id: 1005,
+    name: 'Phoenix, Arizona',
+    lat: 33.442891424622964,
+    lng: -112.07411045441694,
   },
 ]
 
@@ -154,6 +205,76 @@ const countries = [
   {
     id: 1,
     name: 'United State',
+    states: [
+      {
+        id: 0,
+        name: 'Texas',
+        lat: 29.75548920677555,
+        lng: -95.37552950274825,
+        cities: [
+          {
+            id: 1000,
+            name: 'Houston',
+            lat: 29.75548920677555,
+            lng: -95.37552950274825,
+          },
+          {
+            id: 1001,
+            name: 'Dallas',
+            lat: 32.776847367729644,
+            lng: -96.77747682036818,
+          }
+        ]
+      },
+      {
+        id: 1,
+        name: 'Califorina',
+        lat: 34.052133818696994,
+        lng: -118.26664374625872,
+        cities: [
+          {
+            id: 1002,
+            name: 'Los Angeles',
+            lat: 34.052133818696994,
+            lng: -118.26664374625872,
+          },
+          {
+            id: 1003,
+            name: 'San Francisco',
+            lat: 37.767658634544645,
+            lng: -122.39755703551069,
+          },
+        ]
+      },
+      {
+        id: 2,
+        name: 'New York',
+        lat: 40.68435860063441,
+        lng: -73.96834164426204,
+        cities: [
+          {
+            id: 1004,
+            name: 'New York City',
+            lat: 40.68435860063441,
+            lng: -73.96834164426204,
+          },
+        ]
+      },
+      {
+        id: 3,
+        name: 'Arizona',
+        lat: 33.442891424622964,
+        lng: -112.07411045441694,
+        cities: [
+          {
+            id: 1005,
+            name: 'Phoenix',
+            lat: 33.442891424622964,
+            lng: -112.07411045441694,
+          }
+        ]
+      },
+    ],
     cities: [
       {
         id: 4,
@@ -202,6 +323,13 @@ const levels = [
   },
 ]
 
+const topCountries = [
+  'Vietnam',
+  'United State'
+]
+
+const listOfCountries = countries.map(country => country.name)
+
 let citiesArr = countries.map(country => country.cities)
 let cities = [].concat.apply([], citiesArr)
 
@@ -220,7 +348,6 @@ class App extends PureComponent {
       userLocation: null,
       
       entity: null,
-      displayLevel: 'city',
       activedCity: null,
       showCities: {
         // fix me
@@ -229,6 +356,14 @@ class App extends PureComponent {
       },
       showCityEntities: true,
       showProjectEntities: false,
+      displayLevel: 'city',
+      listOfCities: [],
+      listOfStates: [],
+      filters: {
+        country: null,
+        state: null,
+        city: null
+      }
     }
   }
   componentDidMount() {
@@ -422,6 +557,60 @@ class App extends PureComponent {
     })
   }
 
+  handleBlur = (name, value) => {
+    console.log('onBlur')
+    this.handleFilter(name, value)
+  }
+
+  handleKeyDown = (event, name, value) => {
+    if (event.keyCode == 13) {
+      console.log(name, value)
+      this.handleFilter(name, value)
+    }
+  }
+
+  handleFilter = (name, value) => {
+    const { filters } = this.state
+    if (name == 'country') {
+      let activedCountry = countries.find(countryObj => countryObj.name == value)
+      if (!activedCountry) {
+        return
+      }
+      const firstCity = activedCountry.cities[0]
+      this.viewer.camera.flyTo({
+        destination: this.parsePostition(firstCity.lat, firstCity.lng, 3500000)
+      })
+
+      // if (value == 'United States') {}
+      const listOfCities = activedCountry.cities.map(city => city.name)
+      return this.setState({
+        listOfCities,
+        filters: {
+          ...this.state.filters,
+          country: value
+        }
+      })
+    }
+
+    if (name == 'city') {
+      let activedCountry = countries.find(countryObj => countryObj.name == filters.country)
+      if (!activedCountry) {
+        console.log('no activedCountry')
+      }
+      const cityIndex = activedCountry.cities.findIndex(city => city.name == value)
+      const city = activedCountry.cities[cityIndex]
+      this.viewer.camera.flyTo({
+        destination: this.parsePostition(city.lat, city.lng, 90000)
+      })
+      this.setState({
+        filters: {
+          ...this.state.filters,
+          [name]: value
+        }
+      })
+    }
+  }
+
   render() {
     const { 
       displayLevel,
@@ -429,9 +618,18 @@ class App extends PureComponent {
       userLocation,
       showCities,
       showCityEntities,
-      showProjectEntities 
+      showProjectEntities,
+      filters,
+      listOfCities,
+      listOfStates
     } = this.state
+    const {
+      country,
+      state,
+      city
+    } = filters
     let projectsData = []
+
     if (activedCity) {
       const activedCityId = activedCity.id;
       projectsData = entities.filter(entity => entity.city_id == activedCityId)
@@ -458,16 +656,6 @@ class App extends PureComponent {
             <MDBBtn color="amber lighten-1" className="search-btn">
               <span className="text">Search</span>
             </MDBBtn>
-            
-            {/* 
-            <InputGroup className="mb-2">
-              <FormControl id="inlineFormInputGroup" placeholder="Username" />
-              <InputGroup.Prepend className="search-btn">
-                <Button className="search-btn">
-                  <span className="text">Search</span>
-                </Button>
-              </InputGroup.Prepend>
-            </InputGroup> */}
 
             <MDBBtn rounded color="indigo darken-1" className="find-location" size="sm"
               onClick={() => {
@@ -482,37 +670,71 @@ class App extends PureComponent {
           </div>
           {
             displayLevel == 'city' &&
-            <div className="d-flex group-container">
+            <div className="autocomplete-comp">
               {
-                countries.map(country => {
-                  const { cities } = country
-                  const isShowCities = showCities[country.id]
-                  return (
-                    <ListGroup key={country.id}>
-                      <ListGroup.Item className="country-name"
-                        onClick={() => this.handleShowCities(country.id)}
-                      >
-                        <span>{country.name}</span>
-                        <span>
-                          {
-                            isShowCities ? <i className="fas fa-sort-up"/> : <i className="fas fa-sort-down"/>
-                          }
-                        </span>
-                      </ListGroup.Item>
-                      {
-                        isShowCities &&
-                        cities.map((city, index) =>
-                          <ListGroup.Item action onClick={() => this.onClickPosition(city)} key={index}>
-                            {city.name}
-                          </ListGroup.Item>
-                        )
-                      }
-                    </ListGroup>
-                  )
-                })
+                topCountries.map((country, index) =>
+                  <button type="button" className="country-btn" key={index}>{country}</button>
+                )
               }
+              <Autocomplete
+                className="margin-top"
+                id="country"
+                data={listOfCountries}
+                placeholder="Enter country name..."
+                onBlur={this.handleBlur}
+                onKeyDown={this.handleKeyDown}
+              />
+              {/* {
+                (!country || (country && country.name == 'United State')) &&
+                <Autocomplete
+                  className="margin-top"
+                  id="state"
+                  data={listOfStates}
+                  placeholder="Enter state name..."
+                  onBlur={this.handleBlur}
+                  onKeyDown={this.handleKeyDown}
+                />
+              } */}
+              <Autocomplete
+                className="margin-top"
+                id="city"
+                data={listOfCities}
+                placeholder="Enter city name..."
+                onBlur={this.handleBlur}
+                onKeyDown={this.handleKeyDown}
+              />
             </div>
           }
+          {/* <div className="d-flex group-container">
+            {
+              countries.map(country => {
+                const { cities } = country
+                const isShowCities = showCities[country.id]
+                return (
+                  <ListGroup key={country.id}>
+                    <ListGroup.Item className="country-name"
+                      onClick={() => this.handleShowCities(country.id)}
+                    >
+                      <span>{country.name}</span>
+                      <span>
+                        {
+                          isShowCities ? <i className="fas fa-sort-up"/> : <i className="fas fa-sort-down"/>
+                        }
+                      </span>
+                    </ListGroup.Item>
+                    {
+                      isShowCities &&
+                      cities.map((city, index) =>
+                        <ListGroup.Item action onClick={() => this.onClickPosition(city)} key={index}>
+                          {city.name}
+                        </ListGroup.Item>
+                      )
+                    }
+                  </ListGroup>
+                )
+              })
+            }
+          </div> */}
           {
             displayLevel == 'project' &&
             <div className="list-projects">
