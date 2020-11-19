@@ -254,38 +254,14 @@ class App extends PureComponent {
   onZoom = () => {
     const zoomHeight = this.viewer.camera.positionCartographic.height
     if (zoomHeight <= maxHeightShowCity && zoomHeight > maxHeightShowProject) {
-      this.viewer.dataSources.removeAll()
+      this.viewer.dataSources.length > 0 && this.viewer.dataSources.removeAll()
       this.setState({
         showCityEntities: true,
         showProjectEntities: false
       })
     }
     if (zoomHeight <= maxHeightShowProject) {
-      let cityBorder = null
-      if (this.state.activedCity?.name === 'Da Nang') {
-        cityBorder = GeoJsonDataSource.load('./danang.geojson')
-      }
-      if (this.state.activedCity?.name === 'Hanoi') {
-        cityBorder = GeoJsonDataSource.load('./hanoi.geojson')
-      }
-      if (this.state.activedCity?.name === 'Ho Chi Minh') {
-        cityBorder = GeoJsonDataSource.load('./hcm.geojson')
-      }
-      if (this.state.activedCity?.name === 'Texas') {
-        cityBorder = GeoJsonDataSource.load('./texas.geojson')
-      }
-      if (this.state.activedCity?.name === 'California') {
-        cityBorder = GeoJsonDataSource.load('./cali.geojson')
-      }
-      if (this.state.activedCity?.name === 'Los Angeles') {
-        cityBorder = GeoJsonDataSource.load('./la.geojson')
-      }
-      if (this.state.activedCity?.name === 'Nha Trang') {
-        cityBorder = GeoJsonDataSource.load('./nhatrang.geojson')
-      }
-      
-      cityBorder && this.viewer.dataSources.add(cityBorder)
-
+      this.viewer.dataSources.length === 0 && this.addAreaBorder()
       this.setState({
         showProjectEntities: true,
         showCityEntities: false
@@ -337,10 +313,38 @@ class App extends PureComponent {
     this.viewer.camera.flyTo({
       destination: this.parsePostition(city.lat, city.lng, 90000)
     })
+
     this.setState({
       displayLevel: 'project',
       activedCity: city
    })
+  }
+
+  addAreaBorder = () => {
+    let cityBorder = null
+    if (this.state.activedCity?.name === 'Da Nang') {
+      cityBorder = GeoJsonDataSource.load('./danang.geojson')
+    }
+    if (this.state.activedCity?.name === 'Hanoi') {
+      cityBorder = GeoJsonDataSource.load('./hanoi.geojson')
+    }
+    if (this.state.activedCity?.name === 'Ho Chi Minh') {
+      cityBorder = GeoJsonDataSource.load('./hcm.geojson')
+    }
+    if (this.state.activedCity?.name === 'Texas') {
+      cityBorder = GeoJsonDataSource.load('./texas.geojson')
+    }
+    if (this.state.activedCity?.name === 'California') {
+      cityBorder = GeoJsonDataSource.load('./cali.geojson')
+    }
+    if (this.state.activedCity?.name === 'Los Angeles') {
+      cityBorder = GeoJsonDataSource.load('./la.geojson')
+    }
+    if (this.state.activedCity?.name === 'Nha Trang') {
+      cityBorder = GeoJsonDataSource.load('./nhatrang.geojson')
+    }
+
+    cityBorder && this.viewer.dataSources.add(cityBorder)
   }
 
   handleShowCities = (country_id) => {
