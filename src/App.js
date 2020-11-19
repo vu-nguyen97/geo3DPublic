@@ -84,42 +84,7 @@ const entities = [
     lat: 21.02939214531629,
     lng: 105.83624913068846,
   },
-  // {
-  //   id: 8,
-  //   city_id: 4,
-  //   name: 'Texas building',
-  //   lat: 29.38903807067983,
-  //   lng: -94.91513500165428,
-  // },
-  // {
-  //   id: 9,
-  //   city_id: 5,
-  //   name: 'California building',
-  //   lat: 35.12471886317634,
-  //   lng: -117.98415348906342,
-  // },
-  // {
-  //   id: 10,
-  //   city_id: 6,
-  //   name: 'Chicago building',
-  //   lat: 41.84879726701267,
-  //   lng: -87.68257361576919,
-  // },
-  // {
-  //   id: 11,
-  //   city_id: 7,
-  //   name: 'Los Angeles building',
-  //   lat: 34.051519663913176,
-  //   lng: -118.24312176636627,
-  // },
-  // {
-  //   id: 12,
-  //   city_id: 4,
-  //   name: 'Texas building 2',
-  //   lat: 29.384248117725974,
-  //   lng: -94.90069379421364,
-  // },
-
+  
   // new data
   {
     id: 13,
