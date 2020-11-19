@@ -782,7 +782,7 @@ class MapModal extends PureComponent {
                   </svg>
                 </a>
                 <p className="list-answer">
-                     <a className="dropdown-item" href="#">LAWER</a>
+                     <a className="dropdown-item" href="#">LAWYER</a>
                      <a className="dropdown-item" href="#">GIA</a>
                      <a className="dropdown-item" href="#">ADMIN</a>
                 </p>
