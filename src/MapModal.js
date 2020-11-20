@@ -286,9 +286,20 @@ class MapModal extends PureComponent {
           left: bounds.Sa.i,
           right: bounds.Sa.j
         }
+
+        let bottom = -90
+        let top = 90
+        if (bounds.Ya) {
+          bottom = bounds.Ya.i
+          top = bounds.Ya.j
+        } else if (bounds.Wa) {
+          bottom = bounds.Wa.i
+          top = bounds.Wa.j
+        }
+
         var limitedLat = {
-          bottom: bounds.Ya.i,
-          top: bounds.Ya.j
+          bottom,
+          top
         }
   
         var activedLocations = []

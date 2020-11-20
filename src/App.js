@@ -372,7 +372,6 @@ let citiesVN = countries[0].cities
 let stateUS = countries[1].states
 
 let area = citiesVN.concat(stateUS)
-console.log('area', area)
 
 const maxHeightShowCountry = 0
 const maxHeightShowCity = 20000000
@@ -429,7 +428,6 @@ class App extends PureComponent {
 
   onMoveEnd = () => {
     const zoomHeight = this.viewer.camera.positionCartographic.height
-    console.log('zoomHeight', zoomHeight)
     if (zoomHeight <= minHeightShowState) {
       this.addAreaBorder()
     }
@@ -437,7 +435,6 @@ class App extends PureComponent {
 
   onViewChanged = () => {
     const zoomHeight = this.viewer.camera.positionCartographic.height
-    console.log('zoom height view change', zoomHeight)
     if (zoomHeight > minHeightShowState) {
       this.viewer.dataSources.length > 0 && this.viewer.dataSources.removeAll()
       this.setState({
@@ -446,7 +443,6 @@ class App extends PureComponent {
         showProjectEntities: false
       })
     } else {
-      console.log('show project')
       this.setState({
         showProjectEntities: true,
         showCityEntities: false,
@@ -528,7 +524,6 @@ class App extends PureComponent {
       cityBorder = GeoJsonDataSource.load('./texas.geojson')
     }
     if (this.state.activedCity?.name === 'Califorina') {
-      console.log('loadddd')
       cityBorder = GeoJsonDataSource.load('./cali.geojson')
     }
     if (this.state.activedCity?.name === 'Los Angeles') {
@@ -588,12 +583,9 @@ class App extends PureComponent {
   }
 
   onInputChange = () => {
-    console.log('Test')
   }
 
   flyTo = (lat, long) => {
-    console.log('lat', lat)
-    console.log('lng', long)
     this.viewer.camera.flyTo({
       destination: this.parsePostition(lat, long, 70000)
     })
@@ -639,10 +631,8 @@ class App extends PureComponent {
     let entitiesRender = null
 
     if (showStateEntities && !showProjectEntities) {
-      console.log('state')
       entitiesRender = this.generateEntities(area, true)
     } else {
-      console.log('project')
       entitiesRender = this.generateEntities(entities)
     }
 
@@ -687,7 +677,6 @@ class App extends PureComponent {
               {
                 countries.map(country => {
                   const { cities, states } = country
-                  console.log(cities, states)
                   const isShowCities = showCities[country.id]
                   return (
                     <ListGroup key={country.id}>
